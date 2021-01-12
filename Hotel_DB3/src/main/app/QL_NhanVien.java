@@ -376,10 +376,12 @@ public class QL_NhanVien extends javax.swing.JInternalFrame {
             tb+= "Tên nhân viên không được để trống \n";
         }
         if (!check.isNumeric(txt_DienThoai.getText())) {
-            tb += "Số điện thoại phải là số";
+            tb += "Số điện thoại phải là số \n";
         }
-       
-        if (check.isNumeric(txt_DienThoai.getText())) {
+        if (!check.isPhone(txt_DienThoai.getText())) {
+            tb+="Số điện thoại phải bắt đầu bằng số 0 và có 10 số";
+        }
+        if (txt_MaNhanVien.getText().length() >0 && check.isNumeric(txt_DienThoai.getText()) && check.isPhone(txt_DienThoai.getText())) {
             nhanVien.setDienThoai(txt_DienThoai.getText());
             nhanVien.setGhiChu(txt_GhiChu.getText());
             nhanVien.setMaNhanVien(txt_MaNhanVien.getText());
