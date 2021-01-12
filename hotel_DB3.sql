@@ -683,24 +683,44 @@ BEGIN
 ENd
 go
  
+ --Thêm Danh Mục Phòng
 exec add_DanhMuc 'Standar Single Bed Room',1000000,'',1
+go
 exec add_DanhMuc 'Standar Twin Bed Room',1500000,'',1	
+go
 exec add_DanhMuc 'Standar Double Bed Room',1500000,'',1	
+go
 exec add_DanhMuc 'Standar Tripple Bed Room',2000000,'',1
+go
 exec add_DanhMuc 'Superior Single Bed Room',2000000,'',1
+go
 exec add_DanhMuc 'Superior Twin Bed Room',2750000,'',1
+go
 exec add_DanhMuc 'Superior Double Bed Room',2750000,'',1
+go
 exec add_DanhMuc 'Superior Tripple Bed Room',3500000,'',1
+go
 exec add_DanhMuc 'Deluxe Single Bed Room',3000000,'',1
+go
 exec add_DanhMuc 'Deluxe Twin Bed Room',3750000,'',1
+go
 exec add_DanhMuc 'Deluxe Double Bed Room',3750000,'',1
+go
 exec add_DanhMuc 'Deluxe Tripple Bed Room',4250000,'',1
+go
 exec add_DanhMuc 'Suite Single Bed Room',4000000,'',1
+go
 exec add_DanhMuc 'Suite Twin Bed Room',5000000,'',1
+go
 exec add_DanhMuc 'Suite Double Bed Room',5000000,'',1
+go
 exec add_DanhMuc 'Suite Tripple Bed Room',5750000,'',1
+go
 exec add_DanhMuc 'Connecting Twin Bed Room',3500000,'',1
+go
 exec add_DanhMuc 'Connecting Double Bed Room',3500000,'',1
+go
 exec add_DanhMuc 'Connecting Tripple Bed Room',4000000,'',1
+go
 
 
