@@ -34,6 +34,8 @@ public class QL_NhanVien extends javax.swing.JInternalFrame {
         tbl_QuanLyNhanVien.getSelectionModel().addListSelectionListener((ListSelectionEvent e) -> {
             detail_NhanVien();
         });
+        btn_Sua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/add_25px.png"))); // NOI18N
+        btn_Sua.setText("Thêm mới");
     }
 
     private void load_NhanVien() {
@@ -56,6 +58,8 @@ public class QL_NhanVien extends javax.swing.JInternalFrame {
         check_Nu.setSelected(false);
         edit = false;
         txt_MaNhanVien.setEditable(true);
+        btn_Sua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/add_25px.png"))); // NOI18N
+        btn_Sua.setText("Thêm mới");
     }
 
     private void detail_NhanVien() {
@@ -78,6 +82,8 @@ public class QL_NhanVien extends javax.swing.JInternalFrame {
             }
             edit = true;
         }
+        btn_Sua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/update_25px.png"))); // NOI18N
+        btn_Sua.setText("Cập nhật");
     }
 
     /**
@@ -107,11 +113,9 @@ public class QL_NhanVien extends javax.swing.JInternalFrame {
         txt_GhiChu = new javax.swing.JTextArea();
         check_DangLamViec = new javax.swing.JRadioButton();
         check_DaNghi = new javax.swing.JRadioButton();
-        btn_Them = new javax.swing.JButton();
         btn_Sua = new javax.swing.JButton();
         btn_TimKiem = new javax.swing.JButton();
         btn_Xoa = new javax.swing.JButton();
-        btn_Thoat = new javax.swing.JButton();
         btn_Clear = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_QuanLyNhanVien = new javax.swing.JTable();
@@ -168,14 +172,8 @@ public class QL_NhanVien extends javax.swing.JInternalFrame {
             }
         });
 
-        btn_Them.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/add_25px.png"))); // NOI18N
-        btn_Them.setText("Thêm");
-        btn_Them.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ThemActionPerformed(evt);
-            }
-        });
-
+        btn_Sua.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btn_Sua.setForeground(new java.awt.Color(0, 102, 102));
         btn_Sua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/update_25px.png"))); // NOI18N
         btn_Sua.setText("Cập nhật");
         btn_Sua.addActionListener(new java.awt.event.ActionListener() {
@@ -197,14 +195,6 @@ public class QL_NhanVien extends javax.swing.JInternalFrame {
         btn_Xoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_XoaActionPerformed(evt);
-            }
-        });
-
-        btn_Thoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/exit_35px.png"))); // NOI18N
-        btn_Thoat.setText("Thoát");
-        btn_Thoat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ThoatActionPerformed(evt);
             }
         });
 
@@ -236,7 +226,7 @@ public class QL_NhanVien extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
                                     .addComponent(txt_DienThoai)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
@@ -254,18 +244,16 @@ public class QL_NhanVien extends javax.swing.JInternalFrame {
                                 .addComponent(check_Nu)
                                 .addGap(59, 59, 59))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn_Them, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btn_Xoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(4, 4, 4)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btn_Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_Xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_TimKiem))
                             .addComponent(btn_Sua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btn_TimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_Thoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 11, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,16 +287,13 @@ public class QL_NhanVien extends javax.swing.JInternalFrame {
                     .addComponent(check_DangLamViec)
                     .addComponent(jLabel6)
                     .addComponent(check_DaNghi))
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_Them)
-                    .addComponent(btn_TimKiem)
-                    .addComponent(btn_Sua))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_Sua, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_Thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_Xoa)
-                    .addComponent(btn_Clear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_Clear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_TimKiem))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -362,10 +347,6 @@ public class QL_NhanVien extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_check_DaNghiActionPerformed
 
-    private void btn_ThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThoatActionPerformed
-        this.setVisible(false);
-    }//GEN-LAST:event_btn_ThoatActionPerformed
-
     private void btn_SuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SuaActionPerformed
         NhanVien nhanVien = new NhanVien();
         String tb = "";
@@ -407,10 +388,6 @@ public class QL_NhanVien extends javax.swing.JInternalFrame {
         clear();
     }//GEN-LAST:event_btn_ClearActionPerformed
 
-    private void btn_ThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemActionPerformed
-
-    }//GEN-LAST:event_btn_ThemActionPerformed
-
     private void btn_XoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XoaActionPerformed
 
         int idDelete = JOptionPane.showConfirmDialog(rootPane, "Bạn có muốn xóa không?", "Xác nhận xóa", JOptionPane.OK_CANCEL_OPTION);
@@ -436,8 +413,6 @@ public class QL_NhanVien extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Clear;
     private javax.swing.JButton btn_Sua;
-    private javax.swing.JButton btn_Them;
-    private javax.swing.JButton btn_Thoat;
     private javax.swing.JButton btn_TimKiem;
     private javax.swing.JButton btn_Xoa;
     private javax.swing.ButtonGroup buttonGroup1;
