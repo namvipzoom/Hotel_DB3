@@ -43,6 +43,7 @@ public class Hotel_DB3 extends javax.swing.JFrame {
         menu_NhanVien = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HOTEL ĐB3");
@@ -176,6 +177,14 @@ public class Hotel_DB3 extends javax.swing.JFrame {
         });
         menu_QuanLy.add(jMenuItem2);
 
+        jMenuItem3.setText("Phiếu Dịch Vụ");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        menu_QuanLy.add(jMenuItem3);
+
         jMenuBar1.add(menu_QuanLy);
 
         setJMenuBar(jMenuBar1);
@@ -272,6 +281,13 @@ public class Hotel_DB3 extends javax.swing.JFrame {
         datPhong.setVisible(true);
     }//GEN-LAST:event_menu_DatPhongMouseClicked
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        QL_PhieuDichVu pdv = new QL_PhieuDichVu();
+        this.dsk_Main.add(pdv);
+        pdv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -306,6 +322,7 @@ public class Hotel_DB3 extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem menu_DanhMuc;
     private javax.swing.JMenu menu_DatPhong;
     private javax.swing.JMenuItem menu_DichVu;

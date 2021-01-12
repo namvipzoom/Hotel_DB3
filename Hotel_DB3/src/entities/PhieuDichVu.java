@@ -11,31 +11,23 @@ package entities;
  */
 public class PhieuDichVu {
 
-    private int maPhieuDichVu;
     private int maDichVu;
-    private int maPhieuThuePhong;
     private int maPhong;
     private String ghiChu;
-    private boolean trangThai;
+    private Boolean trangThai;
+    private String tenPhong;
+    private float giaDichVu ;
 
     public PhieuDichVu() {
     }
 
-    public PhieuDichVu(int maPhieuDichVu, int maDichVu, int maPhieuThuePhong, int maPhong, String ghiChu, boolean trangThai) {
-        this.maPhieuDichVu = maPhieuDichVu;
+    public PhieuDichVu(int maDichVu, int maPhong, String ghiChu, Boolean trangThai, String tenPhong, float giaDichVu) {
         this.maDichVu = maDichVu;
-        this.maPhieuThuePhong = maPhieuThuePhong;
         this.maPhong = maPhong;
         this.ghiChu = ghiChu;
         this.trangThai = trangThai;
-    }
-
-    public int getMaPhieuDichVu() {
-        return maPhieuDichVu;
-    }
-
-    public void setMaPhieuDichVu(int maPhieuDichVu) {
-        this.maPhieuDichVu = maPhieuDichVu;
+        this.tenPhong = tenPhong;
+        this.giaDichVu = giaDichVu;
     }
 
     public int getMaDichVu() {
@@ -44,14 +36,6 @@ public class PhieuDichVu {
 
     public void setMaDichVu(int maDichVu) {
         this.maDichVu = maDichVu;
-    }
-
-    public int getMaPhieuThuePhong() {
-        return maPhieuThuePhong;
-    }
-
-    public void setMaPhieuThuePhong(int maPhieuThuePhong) {
-        this.maPhieuThuePhong = maPhieuThuePhong;
     }
 
     public int getMaPhong() {
@@ -70,14 +54,37 @@ public class PhieuDichVu {
         this.ghiChu = ghiChu;
     }
 
-    public boolean isTrangThai() {
+    public Boolean getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(boolean trangThai) {
+    public void setTrangThai(Boolean trangThai) {
         this.trangThai = trangThai;
     }
-    
+
+    public String getTenPhong() {
+        return tenPhong;
+    }
+
+    public void setTenPhong(String tenPhong) {
+        this.tenPhong = tenPhong;
+    }
+
+    public float getGiaDichVu() {
+        return giaDichVu;
+    }
+
+    public void setGiaDichVu(float giaDichVu) {
+        this.giaDichVu = giaDichVu;
+    }
+            
     
 
+    
+
+    
+
+    
+
+    
 }
