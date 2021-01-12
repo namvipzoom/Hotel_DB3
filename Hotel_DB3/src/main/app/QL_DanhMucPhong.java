@@ -338,12 +338,13 @@ public final class QL_DanhMucPhong extends javax.swing.JInternalFrame {
                 dao.insertData(dm);
                 edit = false;
             }
+            loadDanhMuc();
             Clear();
         } else {
             JOptionPane.showMessageDialog(this, tb, "Thông báo", JOptionPane.WARNING_MESSAGE);
         }
 
-        loadDanhMuc();
+        
     }//GEN-LAST:event_btn_SuaActionPerformed
 
     private void btn_XoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XoaActionPerformed

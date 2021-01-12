@@ -348,12 +348,13 @@ public final class QL_ThietBi extends javax.swing.JInternalFrame {
                 dao.insertData(tb);
                 edit = false;
             }
+            loadThietBi();
             clear();
         } else {
             JOptionPane.showMessageDialog(this, tbao, "Thông báo", JOptionPane.WARNING_MESSAGE);
         }
 
-        loadThietBi();
+       
     }//GEN-LAST:event_btn_SuaActionPerformed
 
     private void btn_XoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XoaActionPerformed

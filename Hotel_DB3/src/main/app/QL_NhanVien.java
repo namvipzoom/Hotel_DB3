@@ -45,6 +45,7 @@ public class QL_NhanVien extends javax.swing.JInternalFrame {
         listNhanVien.stream().forEach((nv) -> {
             defaultTableModel.addRow(new Object[]{nv.getMaNhanVien(), nv.getTenNhanVien(), nv.getDienThoai(), nv.getGioiTinh() ? "Nam" : "Nữ", nv.getGhiChu(), nv.getTrangThai() ? "Đang làm việc" : "Đã nghỉ"});
         });
+        
     }
 
     private void clear() {
@@ -372,16 +373,19 @@ public class QL_NhanVien extends javax.swing.JInternalFrame {
             if (edit == true) {
                 iDAO_NhanVien.updateData(nhanVien);
                 edit = false;
+               
             } else {
                 iDAO_NhanVien.insertData(nhanVien);
                 edit = false;
+                
             }
-            clear();
+            load_NhanVien();
+        clear(); 
         } else {
             JOptionPane.showMessageDialog(this, tb, "Thông báo", JOptionPane.WARNING_MESSAGE);
         }
-
-        load_NhanVien();
+        
+        
     }//GEN-LAST:event_btn_SuaActionPerformed
 
     private void btn_ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ClearActionPerformed

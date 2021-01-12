@@ -275,12 +275,13 @@ public class QL_DichVu extends javax.swing.JInternalFrame {
                 iDAO_DichVu.insertData(dichVu);
                 edit = false;
             }
+            loadDichVu();
             clear();
         }else{
             JOptionPane.showMessageDialog(this, tb, "Thông Báo",JOptionPane.WARNING_MESSAGE);
         }
 
-        loadDichVu();
+        
     }//GEN-LAST:event_btn_SuaActionPerformed
 
     private void btn_TimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TimKiemActionPerformed

@@ -336,12 +336,13 @@ public class QL_KhachHang extends javax.swing.JInternalFrame {
                 iDAO_KhachHang.insertData(khachHang);
                 edit = false;
             }
+            loadKhachHang();
             clear();
         }else{
             JOptionPane.showMessageDialog(this, tb, "Thông Báo",JOptionPane.WARNING_MESSAGE);
         }
 
-        loadKhachHang();
+        
     }//GEN-LAST:event_btn_SuaActionPerformed
 
     private void btn_ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ClearActionPerformed

@@ -401,11 +401,12 @@ public final class QL_Phong extends javax.swing.JInternalFrame {
                 dao.insertData(p);
                 edit = false;
             }
+             loadPhong();
             clear();
         } else {
             JOptionPane.showMessageDialog(this, tb, "Warning", JOptionPane.WARNING_MESSAGE);
         }
-        loadPhong();
+       
     }//GEN-LAST:event_btn_SuaActionPerformed
 
     private void btn_TimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TimKiemActionPerformed

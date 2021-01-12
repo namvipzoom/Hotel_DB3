@@ -364,12 +364,14 @@ public class QL_KhuyenMai extends javax.swing.JInternalFrame {
             } else {
                 iDAO_KhuyenMai.insertData(khuyenMai);
                 edit = false;
-            }clear();
+            }
+             load_KhuyenMai();
+            clear();
         }else{
             JOptionPane.showMessageDialog(this, tb, "Thông báo",JOptionPane.WARNING_MESSAGE);
         }
 
-        load_KhuyenMai();
+       
         
     }//GEN-LAST:event_btn_SuaActionPerformed
 
