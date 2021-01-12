@@ -673,7 +673,6 @@ BEGIN
 ENd
 go
 
-exec find_PhieuThietBiByTen N'2'
 
 create proc find_PhieuThietBiByTenVaPhong
 	@maThietBi int, -- Mã thiết bị
@@ -686,16 +685,4 @@ go
 
 
 
-exec find_PhieuThietBiByTenVaPhong 3,1
-go
-exec add_PhieuThietBi 1,1,3,2,'',0
-go
-exec getAll_ThietBi
-go
-exec getAll_DanhMuc
-go
-exec get_AllPhieuThietBi
 
-exec add_ThietBi N'Thiết bị 1', 123456, 12, 1
-	
-exec add_DanhMuc N'Danh mục 1', 12341, N'Không có gì',1
