@@ -91,7 +91,12 @@ public class QL_DichVu extends javax.swing.JInternalFrame {
         buttonGroup1.add(check_KhongPhucVu);
         check_KhongPhucVu.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         check_KhongPhucVu.setForeground(new java.awt.Color(255, 0, 0));
-        check_KhongPhucVu.setText("Không phục  vụ");
+        check_KhongPhucVu.setText("Không phục vụ");
+        check_KhongPhucVu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check_KhongPhucVuActionPerformed(evt);
+            }
+        });
 
         btn_Sua.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_Sua.setForeground(new java.awt.Color(0, 102, 102));
@@ -217,7 +222,7 @@ public class QL_DichVu extends javax.swing.JInternalFrame {
                 .addGap(25, 25, 25)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -287,6 +292,10 @@ public class QL_DichVu extends javax.swing.JInternalFrame {
             defaultTableModel.addRow(new Object[]{dichVu.getMaDichVu(), dichVu.getTenDichVu(), dichVu.getGiaDichVu(), dichVu.getTrangThai() ? "Phục vụ" : "Không phục vụ"});
         });
     }//GEN-LAST:event_btn_TimKiemActionPerformed
+
+    private void check_KhongPhucVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_KhongPhucVuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_check_KhongPhucVuActionPerformed
 
     private void loadDichVu() {
         DefaultTableModel defaultTableModel = (DefaultTableModel) tbl_QuanLyDichVu.getModel();

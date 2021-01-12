@@ -34,6 +34,8 @@ public final class QL_ThietBi extends javax.swing.JInternalFrame {
             detail();
         });
         loadThietBi();
+        btn_Sua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/add_25px.png"))); // NOI18N
+        btn_Sua.setText("Thêm mới");
     }
 
     public void loadThietBi() {
@@ -61,6 +63,8 @@ public final class QL_ThietBi extends javax.swing.JInternalFrame {
             }
             edit = true;
         }
+        btn_Sua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/update_25px.png"))); // NOI18N
+        btn_Sua.setText("Cập nhật");
     }
 
     /**
@@ -84,12 +88,10 @@ public final class QL_ThietBi extends javax.swing.JInternalFrame {
         txtGiaThietBi = new javax.swing.JTextField();
         txtTenThietBi = new javax.swing.JTextField();
         txtSoLuong = new javax.swing.JTextField();
-        btn_Them = new javax.swing.JButton();
         btn_Clear = new javax.swing.JButton();
         btn_Xoa = new javax.swing.JButton();
         btn_Sua = new javax.swing.JButton();
         btn_TimKiem = new javax.swing.JButton();
-        btn_Thoat = new javax.swing.JButton();
         check_SuDung = new javax.swing.JRadioButton();
         check_KhongSuDung = new javax.swing.JRadioButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -138,14 +140,6 @@ public final class QL_ThietBi extends javax.swing.JInternalFrame {
             }
         });
 
-        btn_Them.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/add_25px.png"))); // NOI18N
-        btn_Them.setText("Thêm");
-        btn_Them.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ThemActionPerformed(evt);
-            }
-        });
-
         btn_Clear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/broom_25px.png"))); // NOI18N
         btn_Clear.setText("Clear");
         btn_Clear.addActionListener(new java.awt.event.ActionListener() {
@@ -162,6 +156,8 @@ public final class QL_ThietBi extends javax.swing.JInternalFrame {
             }
         });
 
+        btn_Sua.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btn_Sua.setForeground(new java.awt.Color(0, 102, 102));
         btn_Sua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/update_25px.png"))); // NOI18N
         btn_Sua.setText("Cập nhật");
         btn_Sua.addActionListener(new java.awt.event.ActionListener() {
@@ -175,14 +171,6 @@ public final class QL_ThietBi extends javax.swing.JInternalFrame {
         btn_TimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_TimKiemActionPerformed(evt);
-            }
-        });
-
-        btn_Thoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/exit_35px.png"))); // NOI18N
-        btn_Thoat.setText("Thoát");
-        btn_Thoat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ThoatActionPerformed(evt);
             }
         });
 
@@ -231,17 +219,12 @@ public final class QL_ThietBi extends javax.swing.JInternalFrame {
                                 .addComponent(txtSoLuong)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btn_Clear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_Them, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btn_Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btn_Sua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_Xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btn_Xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_Thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_TimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(btn_TimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_Sua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -268,17 +251,13 @@ public final class QL_ThietBi extends javax.swing.JInternalFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(check_SuDung)
                     .addComponent(check_KhongSuDung))
-                .addGap(55, 55, 55)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_Them)
-                    .addComponent(btn_Sua)
-                    .addComponent(btn_TimKiem))
+                .addGap(36, 36, 36)
+                .addComponent(btn_Sua, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btn_Clear)
-                        .addComponent(btn_Xoa))
-                    .addComponent(btn_Thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_Clear)
+                    .addComponent(btn_Xoa)
+                    .addComponent(btn_TimKiem))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
@@ -342,37 +321,6 @@ public final class QL_ThietBi extends javax.swing.JInternalFrame {
         clear();
         edit = false;
     }//GEN-LAST:event_btn_ClearActionPerformed
-
-    private void btn_ThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThoatActionPerformed
-        this.setVisible(false);
-    }//GEN-LAST:event_btn_ThoatActionPerformed
-
-    private void btn_ThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemActionPerformed
-        // TODO add your handling code here:
-        ThietBi tb = new ThietBi();
-        String tbao = "";
-        if (txtTenThietBi.getText().length() == 0) {
-            tbao += "Tên thiết bị không được để trống \n";
-        }
-        if (!check.isNumeric(txtGiaThietBi.getText())) {
-            tbao += "Giá phải là số \n";
-        }
-        if (!check.isNumeric(txtSoLuong.getText())) {
-            tbao += "Số lượng phải là số";
-        }
-        if (txtTenThietBi.getText().length() > 0 && check.isNumeric(txtGiaThietBi.getText()) && check.isNumeric(txtSoLuong.getText())) {
-            tb.setTenThietBi(txtTenThietBi.getText());
-            tb.setGiaThietBi(Float.parseFloat(txtGiaThietBi.getText()));
-            tb.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
-            tb.setTrangThai(check_SuDung.isSelected());
-            dao.insertData(tb);
-        } else {
-            JOptionPane.showMessageDialog(this, tbao, "Thông báo", JOptionPane.WARNING_MESSAGE);
-        }
-
-        loadThietBi();
-        clear();
-    }//GEN-LAST:event_btn_ThemActionPerformed
 
     private void btn_SuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SuaActionPerformed
         // TODO add your handling code here:
@@ -439,13 +387,13 @@ public final class QL_ThietBi extends javax.swing.JInternalFrame {
         check_SuDung.setSelected(true);
         check_KhongSuDung.setSelected(false);
         edit = false;
+        btn_Sua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/add_25px.png"))); // NOI18N
+        btn_Sua.setText("Thêm mới");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Clear;
     private javax.swing.JButton btn_Sua;
-    private javax.swing.JButton btn_Them;
-    private javax.swing.JButton btn_Thoat;
     private javax.swing.JButton btn_TimKiem;
     private javax.swing.JButton btn_Xoa;
     private javax.swing.ButtonGroup buttonGroup1;
