@@ -21,7 +21,7 @@ public class Connection_DB {
     public static Connection getConnect(){
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            return DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=hotel_DB3","sa","1234$");
+            return DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=hotel_DB3","sa","1234");
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Connection_DB.class.getName()).log(Level.SEVERE, null, ex);
         }
