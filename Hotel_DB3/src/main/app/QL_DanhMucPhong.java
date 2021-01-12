@@ -9,7 +9,6 @@ import DAO.IDAO_DanhMuc;
 import entities.DanhMuc;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
