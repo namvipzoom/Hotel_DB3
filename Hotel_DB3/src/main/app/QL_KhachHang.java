@@ -320,13 +320,16 @@ public class QL_KhachHang extends javax.swing.JInternalFrame {
         if (!check.isNumeric(txt_DienThoai.getText())) {
             tb += "Số điện thoại phải là số \n";
         }
+        if (!check.isPhone(txt_DienThoai.getText())) {
+            tb+="Số điện thoại phải bắt đầu bằng số 0 và có 10 số \n";
+        }
         if (!check.isNumeric(txt_CMND.getText())) {
             tb += "Số chứng minh nhân dân phải là số \n";
         }
         if (!check.isNumeric(txt_SoLuot.getText())) {
             tb += "Số lượt phải là số \n";
         }
-        if (txt_TenKhachHang.getText().length() > 0 && check.isNumeric(txt_DienThoai.getText()) && check.isNumeric(txt_CMND.getText()) && check.isNumeric(txt_SoLuot.getText())) {
+        if (txt_TenKhachHang.getText().length() > 0 && check.isNumeric(txt_DienThoai.getText()) && check.isPhone(txt_DienThoai.getText()) && check.isNumeric(txt_CMND.getText()) && check.isNumeric(txt_SoLuot.getText())) {
             khachHang.setTenKhachHang(txt_TenKhachHang.getText());
             khachHang.setDienThoai(txt_DienThoai.getText());
             khachHang.setCMND(txt_CMND.getText());

@@ -21,4 +21,13 @@ public class Check_Validate {
        }
        return true;
    }
+   
+   public static Boolean isPhone(String value){
+       Pattern pattern = Pattern.compile("^[0][0-9]{9}$");
+       Matcher matcher = pattern.matcher(value);
+       if (!matcher.find()) {
+           return false;
+       }
+       return true;
+   }
 }
