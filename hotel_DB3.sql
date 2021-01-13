@@ -104,8 +104,8 @@ Create table HoaDon
 	maNhanVien Varchar (5) Foreign key references NhanVien(maNhanVien), --Mã nhân viên trực tiếp đặt phòng cho khách
 	maKhachHang int Foreign key references KhachHang(maKhachHang), --Mã của khách hàng
 	maPhong int foreign key references Phong(maPhong), -- Mã phòng mà khách hàng thuê 
-	ngayDen	date Not null,--Ngày khách hàng tới khách sạn
-	ngayDi	date Not null,--Ngày khách hàng rời khách sạn
+	ngayDen	varchar(255) Not null,--Ngày khách hàng tới khách sạn
+	ngayDi	varchar(255) Not null,--Ngày khách hàng rời khách sạn
 	datCoc float Default(0) not null, --Tiền đặt cọc của khách
 	maKhuyenMai int Foreign key references KhuyenMai(maKhuyenMai), --Mã khuyến mại tặng kèm khách hàng
 	tongTien float Not null, --Tổng tiền thanh toán của khách hàng là tổng tiền của các phiếu đặt phòng
@@ -565,48 +565,53 @@ go
 
 
 -- THỦ TỤC BẢNG HÓA ĐƠN
-Create proc add_HoaDon
-@maNhanVien Varchar (5) , --Mã nhân viên trực tiếp đặt phòng cho khách
-@maKhachHang int , --Mã của khách hàng
-@maPhong int , -- Mã phòng mà khách hàng thuê 
-@ngayDen	date ,--Ngày khách hàng tới khách sạn
-@ngayDi	date ,--Ngày khách hàng rời khách sạn
-@datCoc float , --Tiền đặt cọc của khách
-@maKhuyenMai int , --Mã khuyến mại tặng kèm khách hàng
-@tongTien float , --Tổng tiền thanh toán của khách hàng là tổng tiền của các phiếu đặt phòng
-@ghiChu nvarchar (255), --Ghi chú về phòng
-@trangThai Bit  --Trạng thái hóa đơn, 0- đã thanh tóa, 1- đang chờ
+
+create proc insert_HoaDon
+	@maNhanVien Varchar (5), --Mã nhân viên trực tiếp đặt phòng cho khách
+	@maKhachHang int, --Mã của khách hàng
+	@maPhong int, -- Mã phòng mà khách hàng thuê 
+	@ngayDen varchar(50),--Ngày khách hàng tới khách sạn
+	@ngayDi	varchar(50),--Ngày khách hàng rời khách sạn
+	@datCoc float, --Tiền đặt cọc của khách
+	@maKhuyenMai int, --Mã khuyến mại tặng kèm khách hàng
+	@tongTien float, --Tổng tiền thanh toán của khách hàng là tổng tiền của các phiếu đặt phòng
+	@ghiChu nvarchar(255), --Ghi chú về phòng
+	@trangThai Bit 
 as
-BEGIN
-	insert into HoaDon values(@maNhanVien,@maKhachHang,@maPhong,@ngayDen,@ngayDi,@datCoc,@maKhuyenMai,@tongTien,@ghiChu,@trangThai)
-END
+begin
+	insert into HoaDon values (@maNhanVien, @maKhachHang, @maPhong, @ngayDen, @ngayDi, @datCoc, @maKhuyenMai, @tongTien, @ghiChu, @trangThai);
+	update Phong set Phong.trangThai = 0 where maPhong = @maPhong;
+	update KhachHang set soLuot = soLuot + 1 where maKhachHang = @maKhachHang
+end
 go
 
-Create proc update_HoaDon
-@maHoaDon int , --Mã hóa đơn của khách hàng
-@maNhanVien Varchar (5) , --Mã nhân viên trực tiếp đặt phòng cho khách
-@maKhachHang int , --Mã của khách hàng
-@maPhong int , -- Mã phòng mà khách hàng thuê 
-@ngayDen	date ,--Ngày khách hàng tới khách sạn
-@ngayDi	date ,--Ngày khách hàng rời khách sạn
-@datCoc float , --Tiền đặt cọc của khách
-@maKhuyenMai int , --Mã khuyến mại tặng kèm khách hàng
-@tongTien float , --Tổng tiền thanh toán của khách hàng là tổng tiền của các phiếu đặt phòng
-@ghiChu nvarchar (255), --Ghi chú về phòng
-@trangThai Bit  --Trạng thái hóa đơn, 0- đã thanh tóa, 1- đang chờ
+
+create proc update_HoaDon
+	@maHoaDon int,
+	@maNhanVien Varchar(5), --Mã nhân viên trực tiếp đặt phòng cho khách
+	@maKhachHang int, --Mã của khách hàng
+	@maPhong int, -- Mã phòng mà khách hàng thuê 
+	@ngayDen varchar(50),--Ngày khách hàng tới khách sạn
+	@ngayDi	varchar(50),--Ngày khách hàng rời khách sạn
+	@datCoc float, --Tiền đặt cọc của khách
+	@maKhuyenMai int, --Mã khuyến mại tặng kèm khách hàng
+	@tongTien float, --Tổng tiền thanh toán của khách hàng là tổng tiền của các phiếu đặt phòng
+	@ghiChu nvarchar(255), --Ghi chú về phòng
+	@trangThai Bit 
 as
-BEGIN
-	update HoaDon set maNhanVien = @maNhanVien, maKhachHang = @maKhachHang,maPhong = @maPhong,ngayDen = @ngayDen,ngayDi = @ngayDi,datCoc = @datCoc,
-	maKhuyenMai = @maKhuyenMai,tongTien = @tongTien,ghiChu = @ghiChu,trangThai=@trangThai where maHoaDon = @maHoaDon
-END
+begin
+	update HoaDon set maNhanVien = @maNhanVien, maKhachHang = @maKhachHang, maPhong =  @maPhong, ngayDen = @ngayDen, ngayDi = @ngayDi, datCoc = @datCoc, maKhuyenMai = @maKhuyenMai, tongTien = @tongTien, ghiChu = @ghiChu, trangThai = @trangThai where maHoaDon = @maHoaDon
+end
 go
 
-Create proc delete_HoaDon
-@maHoaDon int  --Mã hóa đơn của khách hàng
+create proc delete_HoaDon
+	@maHoaDon int
 as
-BEGIN
-	delete from HoaDon where maHoaDon = @maHoaDon
-END
+begin
+	update Phong set Phong.trangThai = 0 where maPhong = (select maPhong from HoaDon where maHoaDon = @maHoaDon);
+	update KhachHang set soLuot = soLuot -1 where maKhachHang = (select maKhachHang from HoaDon where maHoaDon = @maHoaDon);
+	delete HoaDon where maHoaDon = @maHoaDon;
+end
 go
 
 Create proc getAll_HoaDon
@@ -615,7 +620,6 @@ BEGIN
 	select * from HoaDon
 END
 go
-
 Create proc Find_maHoaDon
 @maHoaDon int  --Mã hóa đơn của khách hàng
 as
@@ -715,7 +719,6 @@ BEGIN
 	join DichVu dv
 	on pdv.maDichVu = dv.maDichVu
 END
-
 go
 
 Create proc find_phieuDichVu
@@ -783,58 +786,5 @@ exec add_DanhMuc 'Connecting Double Bed Room',3500000,'',1
 go
 exec add_DanhMuc 'Connecting Tripple Bed Room',4000000,'',1
 go
-
-exec add_Phong '101',1,1,'',1
-go
-exec add_Phong '102',1,1,'',1
-go
-exec add_Phong '103',1,1,'',1
-go
-exec add_Phong '104',2,2,'',1
-go
-exec add_Phong '105',2,2,'',1
-go
-exec add_Phong '106',2,2,'',1
-go
-exec add_Phong '107',3,2,'',1
-go
-exec add_Phong '108',3,2,'',1
-go
-exec add_Phong '109',3,2,'',1
-go
-exec add_Phong '110',4,3,'',1
-go
-exec add_Phong '111',4,3,'',1
-go
-exec add_Phong '112',4,3,'',1
-go
-exec add_Phong '201',5,1,'',1
-go
-exec add_Phong '202',5,1,'',1
-go
-exec add_Phong '203',5,1,'',1
-go
-exec add_Phong '204',6,2,'',1
-go
-exec add_Phong '205',6,2,'',1
-go
-exec add_Phong '206',6,2,'',1
-go
-exec add_Phong '207',7,2,'',1
-go
-exec add_Phong '208',7,2,'',1
-go
-exec add_Phong '209',7,2,'',1
-go
-exec add_Phong '210',8,3,'',1
-go
-exec add_Phong '211',8,3,'',1
-go
-exec add_Phong '212',8,3,'',1
-go
-
-
-
-
 
 
