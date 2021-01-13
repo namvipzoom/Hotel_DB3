@@ -354,6 +354,9 @@ public class QL_NhanVien extends javax.swing.JInternalFrame {
         if (txt_MaNhanVien.getText().length() == 0) {
             tb+= "Mã nhân viên không được để trống \n";
         }
+        if (!check.checkNV(txt_MaNhanVien.getText())) {
+            tb+="Mã nhân viên sai định dạng VD: NV123 \n";
+        }
          if (txt_TenNhanVien.getText().length() == 0) {
             tb+= "Tên nhân viên không được để trống \n";
         }
@@ -363,7 +366,7 @@ public class QL_NhanVien extends javax.swing.JInternalFrame {
         if (!check.isPhone(txt_DienThoai.getText())) {
             tb+="Số điện thoại phải bắt đầu bằng số 0 và có 10 số";
         }
-        if (txt_MaNhanVien.getText().length() >0 && check.isNumeric(txt_DienThoai.getText()) && check.isPhone(txt_DienThoai.getText())) {
+        if (txt_MaNhanVien.getText().length() >0 && check.checkNV(txt_MaNhanVien.getText())&& check.isNumeric(txt_DienThoai.getText()) && check.isPhone(txt_DienThoai.getText())) {
             nhanVien.setDienThoai(txt_DienThoai.getText());
             nhanVien.setGhiChu(txt_GhiChu.getText());
             nhanVien.setMaNhanVien(txt_MaNhanVien.getText());
