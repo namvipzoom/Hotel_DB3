@@ -63,7 +63,23 @@ public class IDAO_DanhMuc implements IDAO_Manager<DanhMuc, Integer, String, Bool
 
     @Override
     public List<DanhMuc> findDataByName(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         List<DanhMuc> data = new ArrayList<>();
+        ResultSet rs = Connection_DB.executeQuery("{Call find_tenDanhMuc(?)}",name);
+        try {
+            while (rs.next()) {
+                DanhMuc dm = new DanhMuc();
+                dm.setMaDanhMuc(rs.getInt("maDanhMuc"));
+                dm.setTenDanhMuc(rs.getString("tenDanhMuc"));
+                dm.setGiaPhong(rs.getFloat("giaPhong"));
+                dm.setGhiChu(rs.getString("ghiChu"));
+                dm.setTrangThai(rs.getBoolean("trangThai"));
+                data.add(dm);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(IDAO_DanhMuc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return data;
     }
 
     @Override

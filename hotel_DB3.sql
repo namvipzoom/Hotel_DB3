@@ -683,6 +683,61 @@ BEGIN
 ENd
 go
  
+ -- Thủ tục bảng phiếu dịch vụ
+Create proc add_PhieuDichVu
+@maDichVu int , --Mã dịch vụ của phòng
+@maPhong int , --Mã phòng mà khách hàng thuê
+@ghiChu nvarchar (255), --Ghi chú về phiếu đặt
+@trangThai Bit --Trạng thái của khuyến mại, 0- đã thanh toán, 1- đang chờ
+as
+BEGIN
+	insert into PhieuDichVu values(@maDichVu,@maPhong,@ghiChu,@trangThai)
+END
+go
+
+Create proc delete_PhieuDichVu
+@maDichVu int  --Mã dịch vụ của phòng
+as
+BEGIN
+	delete from PhieuDichVu where maDichVu = @maDichVu
+END
+go
+Create proc getAll_PhieuDichVu
+as
+BEGIN
+	select pdv.*,p.tenPhong,dv.giaDichVu,dv.tenDichVu from PhieuDichVu pdv join Phong p 
+	on pdv.maPhong = p.maPhong
+	join DichVu dv
+	on pdv.maDichVu = dv.maDichVu
+END
+
+
+Create proc find_phieuDichVu
+@maDichVu int
+as
+BEGIN
+	select * from PhieuDichVu where maDichVu = @maDichVu
+END
+go
+Create proc find_tenDichVu_PhieuDichVu
+@tenDichVu nvarchar(100)
+as
+BEGIN
+	select pdv.*,dv.tenDichVu,dv.giaDichVu,p.tenPhong from PhieuDichVu pdv join DichVu dv
+	on pdv.maDichVu = dv.maDichVu 
+	join phong p on pdv.maPhong = p.maPhong
+	where dv.tenDichVu like '%'+@tenDichVu+'%'
+END
+go
+
+ Create proc find_tenDanhMuc
+@tenDanhMuc varchar(100)
+as
+BEGIN
+	select * from DanhMuc where tenDanhMuc like  '%'+@tenDanhMuc+'%'
+END
+go
+
  --Thêm Danh Mục Phòng
 exec add_DanhMuc 'Standar Single Bed Room',1000000,'',1
 go
