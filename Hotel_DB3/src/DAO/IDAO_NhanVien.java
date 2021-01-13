@@ -60,7 +60,24 @@ public class IDAO_NhanVien implements IDAO_Manager<NhanVien, String, String, Boo
         }
         return null;
     }
-
+    public NhanVien Login(String tk,String mk) {
+        ResultSet rs = Connection_DB.executeQuery("{Call login(?,?)}",tk,mk);
+        try {
+            while (rs.next()) {
+                NhanVien nv = new NhanVien();
+                nv.setMaNhanVien(rs.getString("maNhanVien"));
+                nv.setTenNhanVien(rs.getString("tenNhanVien"));
+                nv.setDienThoai(rs.getString("dienThoai"));
+                nv.setGioiTinh(rs.getBoolean("gioiTinh"));
+                nv.setGhiChu(rs.getString("ghiChu"));
+                nv.setTrangThai(rs.getBoolean("trangThai"));
+                return nv;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(IDAO_NhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
     @Override
     public List<NhanVien> findDataByName(String name) {
         List<NhanVien> data = new ArrayList<>();

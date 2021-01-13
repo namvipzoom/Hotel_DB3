@@ -836,8 +836,19 @@ go
 exec add_Phong '212',8,3,'',1
 go
 
+exec add_DichVu'Trông trẻ',0,1
+go
+exec add_DichVu'Dịch vụ phục vụ người khuyết tật',0,1
+go
+exec add_DichVu'Dịch vụ phòng 24/24',0,1
+go
+exec add_DichVu'Giặt ủi',0,1
+go
 
-
-
+create proc login 
+@maNhanVien Varchar (5),
+@dienThoai Varchar (20)
+as
+select * from NhanVien where maNhanVien=@maNhanVien and dienThoai=@dienThoai
 
 
