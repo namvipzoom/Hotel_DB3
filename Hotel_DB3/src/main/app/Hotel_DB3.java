@@ -54,11 +54,11 @@ public class Hotel_DB3 extends javax.swing.JFrame {
         dsk_Main.setLayout(dsk_MainLayout);
         dsk_MainLayout.setHorizontalGroup(
             dsk_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1018, Short.MAX_VALUE)
+            .addGap(0, 1000, Short.MAX_VALUE)
         );
         dsk_MainLayout.setVerticalGroup(
             dsk_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 581, Short.MAX_VALUE)
+            .addGap(0, 980, Short.MAX_VALUE)
         );
 
         menu_DatPhong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/new_copy_25px.png"))); // NOI18N
@@ -197,7 +197,9 @@ public class Hotel_DB3 extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dsk_Main)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(dsk_Main, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();

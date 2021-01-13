@@ -30,4 +30,13 @@ public class Check_Validate {
        }
        return true;
    }
+   
+   public static Boolean checkNV(String value){
+       Pattern pattern = Pattern.compile("^[N][V][0-9]{3}$");
+       Matcher matcher  = pattern.matcher(value);
+       if (!matcher.find()) {
+           return false;
+       }
+       return true;
+   }
 }
