@@ -716,6 +716,7 @@ BEGIN
 	on pdv.maDichVu = dv.maDichVu
 END
 
+go
 
 Create proc find_phieuDichVu
 @maDichVu int

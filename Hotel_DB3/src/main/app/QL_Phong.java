@@ -312,7 +312,9 @@ public final class QL_Phong extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tbl_QuanLyPhong);
         if (tbl_QuanLyPhong.getColumnModel().getColumnCount() > 0) {
-            tbl_QuanLyPhong.getColumnModel().getColumn(0).setPreferredWidth(35);
+            tbl_QuanLyPhong.getColumnModel().getColumn(0).setPreferredWidth(20);
+            tbl_QuanLyPhong.getColumnModel().getColumn(1).setPreferredWidth(20);
+            tbl_QuanLyPhong.getColumnModel().getColumn(2).setPreferredWidth(120);
             tbl_QuanLyPhong.getColumnModel().getColumn(3).setPreferredWidth(25);
         }
 
