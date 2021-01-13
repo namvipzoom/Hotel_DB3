@@ -286,6 +286,11 @@ public final class QL_DanhMucPhong extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane2.setViewportView(tbl_QuanLyDanhMucPhong);
+        if (tbl_QuanLyDanhMucPhong.getColumnModel().getColumnCount() > 0) {
+            tbl_QuanLyDanhMucPhong.getColumnModel().getColumn(0).setPreferredWidth(35);
+            tbl_QuanLyDanhMucPhong.getColumnModel().getColumn(1).setPreferredWidth(130);
+            tbl_QuanLyDanhMucPhong.getColumnModel().getColumn(4).setPreferredWidth(30);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
