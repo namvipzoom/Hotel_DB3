@@ -137,7 +137,6 @@ Create table PhieuDichVu
 go
 
 
-
 -- Thủ tục của bảng Danh mục
 -- Thêm mới dữ liệu
 Create proc add_DanhMuc
@@ -682,45 +681,61 @@ BEGIN
 	select ptb.*, dm.tenDanhMuc as N'tenDanhMuc', tb.tenThietBi as N'tenThietBi' from PhieuThietBi ptb join ThietBi tb on tb.maThietBi = ptb.maThietBi join DanhMuc dm on dm.maDanhMuc = ptb.maDanhMuc where ptb.maThietBi = @maThietBi and ptb.maPhong = @phong
 ENd
 go
- 
- --Thêm Danh Mục Phòng
-exec add_DanhMuc 'Standar Single Bed Room',1000000,'',1
+
+-- Thủ tục bảng phiếu dịch vụ
+Create proc add_PhieuDichVu
+@maDichVu int , --Mã dịch vụ của phòng
+@maPhong int , --Mã phòng mà khách hàng thuê
+@ghiChu nvarchar (255), --Ghi chú về phiếu đặt
+@trangThai Bit --Trạng thái của khuyến mại, 0- đã thanh toán, 1- đang chờ
+as
+BEGIN
+	insert into PhieuDichVu values(@maDichVu,@maPhong,@ghiChu,@trangThai)
+END
 go
-exec add_DanhMuc 'Standar Twin Bed Room',1500000,'',1	
+
+Create proc delete_PhieuDichVu
+@maDichVu int  --Mã dịch vụ của phòng
+as
+BEGIN
+	delete from PhieuDichVu where maDichVu = @maDichVu
+END
 go
-exec add_DanhMuc 'Standar Double Bed Room',1500000,'',1	
+Create proc getAll_PhieuDichVu
+as
+BEGIN
+	select pdv.*,p.tenPhong,dv.giaDichVu,dv.tenDichVu from PhieuDichVu pdv join Phong p 
+	on pdv.maPhong = p.maPhong
+	join DichVu dv
+	on pdv.maDichVu = dv.maDichVu
+END
+
+
+Create proc find_phieuDichVu
+@maDichVu int
+as
+BEGIN
+	select * from PhieuDichVu where maDichVu = @maDichVu
+END
 go
-exec add_DanhMuc 'Standar Tripple Bed Room',2000000,'',1
-go
-exec add_DanhMuc 'Superior Single Bed Room',2000000,'',1
-go
-exec add_DanhMuc 'Superior Twin Bed Room',2750000,'',1
-go
-exec add_DanhMuc 'Superior Double Bed Room',2750000,'',1
-go
-exec add_DanhMuc 'Superior Tripple Bed Room',3500000,'',1
-go
-exec add_DanhMuc 'Deluxe Single Bed Room',3000000,'',1
-go
-exec add_DanhMuc 'Deluxe Twin Bed Room',3750000,'',1
-go
-exec add_DanhMuc 'Deluxe Double Bed Room',3750000,'',1
-go
-exec add_DanhMuc 'Deluxe Tripple Bed Room',4250000,'',1
-go
-exec add_DanhMuc 'Suite Single Bed Room',4000000,'',1
-go
-exec add_DanhMuc 'Suite Twin Bed Room',5000000,'',1
-go
-exec add_DanhMuc 'Suite Double Bed Room',5000000,'',1
-go
-exec add_DanhMuc 'Suite Tripple Bed Room',5750000,'',1
-go
-exec add_DanhMuc 'Connecting Twin Bed Room',3500000,'',1
-go
-exec add_DanhMuc 'Connecting Double Bed Room',3500000,'',1
-go
-exec add_DanhMuc 'Connecting Tripple Bed Room',4000000,'',1
+Create proc find_tenDichVu_PhieuDichVu
+@tenDichVu nvarchar(100)
+as
+BEGIN
+	select pdv.*,dv.tenDichVu,dv.giaDichVu,p.tenPhong from PhieuDichVu pdv join DichVu dv
+	on pdv.maDichVu = dv.maDichVu 
+	join phong p on pdv.maPhong = p.maPhong
+	where dv.tenDichVu like '%'+@tenDichVu+'%'
+END
 go
 
 
+
+
+
+
+
+
+
+
+	
