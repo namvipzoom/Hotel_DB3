@@ -185,6 +185,12 @@ BEGIN
 	select * from DanhMuc where maDanhMuc = @maDanhMuc
 END
 go
+Create proc getAll_DanhMucHoatDong
+as
+BEGIN
+	select * from DanhMuc where trangThai = 1
+END
+go
 
 -- Thủ tục của bảng Nhân Viên
 Create proc add_NhanVien
@@ -654,7 +660,6 @@ begin
 	select ptb.*, dm.tenDanhMuc as N'tenDanhMuc', tb.tenThietBi as N'tenThietBi' from PhieuThietBi ptb join ThietBi tb on tb.maThietBi = ptb.maThietBi join DanhMuc dm on dm.maDanhMuc = ptb.maDanhMuc
 end
 go
-
 
 
 create proc delete_PhieuThietBi

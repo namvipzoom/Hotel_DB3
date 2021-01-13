@@ -45,7 +45,7 @@ public final class QL_Phong extends javax.swing.JInternalFrame {
     }
 
     public void combobox() {
-        List<DanhMuc> data = new ArrayList<>(dao_Dm.getAllData());
+        List<DanhMuc> data = new ArrayList<>(dao_Dm.getAll_statusDanhMuc());
         data.forEach((dm) -> {
             list_LoaiPhong.addItem(dm);
         });
