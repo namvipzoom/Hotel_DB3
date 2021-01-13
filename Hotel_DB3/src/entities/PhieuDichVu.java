@@ -17,17 +17,19 @@ public class PhieuDichVu {
     private Boolean trangThai;
     private String tenPhong;
     private float giaDichVu ;
+    private String tenDichVu;
 
     public PhieuDichVu() {
     }
 
-    public PhieuDichVu(int maDichVu, int maPhong, String ghiChu, Boolean trangThai, String tenPhong, float giaDichVu) {
+    public PhieuDichVu(int maDichVu, int maPhong, String ghiChu, Boolean trangThai, String tenPhong, float giaDichVu, String tenDichVu) {
         this.maDichVu = maDichVu;
         this.maPhong = maPhong;
         this.ghiChu = ghiChu;
         this.trangThai = trangThai;
         this.tenPhong = tenPhong;
         this.giaDichVu = giaDichVu;
+        this.tenDichVu = tenDichVu;
     }
 
     public int getMaDichVu() {
@@ -77,12 +79,14 @@ public class PhieuDichVu {
     public void setGiaDichVu(float giaDichVu) {
         this.giaDichVu = giaDichVu;
     }
-            
-    
 
-    
+    public String getTenDichVu() {
+        return tenDichVu;
+    }
 
-    
+    public void setTenDichVu(String tenDichVu) {
+        this.tenDichVu = tenDichVu;
+    }
 
     
 

@@ -30,6 +30,7 @@ public class IDAO_PhieuDichVu implements IDAO_Manager<PhieuDichVu, Integer, Obje
                 pdv.setMaDichVu(rs.getInt("maDichVu"));
                 pdv.setMaPhong(rs.getInt("maPhong"));
                 pdv.setTenPhong(rs.getString("tenPhong"));
+                pdv.setTenDichVu(rs.getString("tenDichVu"));
                 pdv.setGiaDichVu(rs.getFloat("giaDichVu"));
                 pdv.setGhiChu(rs.getString("ghiChu"));
                 pdv.setTrangThai(rs.getBoolean("trangThai"));
@@ -61,7 +62,24 @@ public class IDAO_PhieuDichVu implements IDAO_Manager<PhieuDichVu, Integer, Obje
 
     @Override
     public List<PhieuDichVu> findDataByName(Object name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<PhieuDichVu> data = new ArrayList<>();
+        ResultSet rs = Connection_DB.executeQuery("{Call find_tenDichVu_PhieuDichVu(?)}",name);
+        try {
+            while (rs.next()) {
+                PhieuDichVu pdv = new PhieuDichVu();
+                pdv.setMaDichVu(rs.getInt("maDichVu"));
+                pdv.setMaPhong(rs.getInt("maPhong"));
+                pdv.setTenPhong(rs.getString("tenPhong"));
+                pdv.setTenDichVu(rs.getString("tenDichVu"));
+                pdv.setGiaDichVu(rs.getFloat("giaDichVu"));
+                pdv.setGhiChu(rs.getString("ghiChu"));
+                pdv.setTrangThai(rs.getBoolean("trangThai"));
+                data.add(pdv);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(IDAO_NhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;
     }
 
     @Override
