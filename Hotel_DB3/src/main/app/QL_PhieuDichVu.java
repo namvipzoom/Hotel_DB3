@@ -42,17 +42,29 @@ public class QL_PhieuDichVu extends javax.swing.JInternalFrame {
                 detail();
             }
         });
+        tbl_DichVu.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent lse) {
+                detail_DichVu();
+            }
+        });
+        btl_Phong.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent lse) {
+                detail_Phong();
+            }
+        });
         loadPhieuDichVu();
         loadDichVu();
         loadPhong();
     }
 
     public void loadPhieuDichVu() {
-        DefaultTableModel defaultTableModel = (DefaultTableModel) tbl_PhieuDichVu.getModel();
+        DefaultTableModel model = (DefaultTableModel) tbl_PhieuDichVu.getModel();
         List<PhieuDichVu> data = new ArrayList<>(dao.getAllData());
-        defaultTableModel.setRowCount(0);
+        model.setRowCount(0);
         data.forEach((pdv) -> {
-            defaultTableModel.addRow(new Object[]{pdv.getMaDichVu(), pdv.getTenPhong(),pdv.getGiaDichVu(), pdv.getGhiChu(), pdv.getTrangThai()});
+             model.addRow(new Object[]{pdv.getMaDichVu(),pdv.getTenDichVu(), pdv.getTenPhong(),pdv.getGiaDichVu(), pdv.getGhiChu(), pdv.getTrangThai()});
         });
     }
 
@@ -83,9 +95,9 @@ public class QL_PhieuDichVu extends javax.swing.JInternalFrame {
     }
 
     public void detail() {
-        int SelectedRow = tbl_PhieuDichVu.getSelectedRow();
-        if (SelectedRow >= 0) {
-            int id = (int) tbl_PhieuDichVu.getValueAt(SelectedRow, 0);
+        int Selected = tbl_PhieuDichVu.getSelectedRow();
+        if (Selected >= 0) {
+            int id = (int) tbl_PhieuDichVu.getValueAt(Selected, 0);
             PhieuDichVu pdv = dao.findDataById(id);
             txt_maDichVu.setText(pdv.getMaDichVu()+"");
             txt_maPhong.setText(pdv.getMaPhong()+"");
@@ -93,6 +105,26 @@ public class QL_PhieuDichVu extends javax.swing.JInternalFrame {
             if (pdv.getTrangThai() == false) {
                 check_khongHoatDong.setSelected(true);
             }
+        }
+    }
+    
+    public void detail_DichVu() {
+        int SelectedRow = tbl_DichVu.getSelectedRow();
+        if (SelectedRow >= 0) {
+            int id = (int) tbl_DichVu.getValueAt(SelectedRow, 0);
+            DichVu dv = dao_dv.findDataById(id);
+            txt_maDichVu.setText(dv.getMaDichVu()+"");
+            txt_maPhong.setText("");
+            txt_ghiChu.setText("");
+        }
+    }
+    
+    public void detail_Phong() {
+        int SelectedRow = btl_Phong.getSelectedRow();
+        if (SelectedRow >= 0) {
+            int id = (int) btl_Phong.getValueAt(SelectedRow, 0);
+            Phong p = dao_phong.findDataById(id);
+            txt_maPhong.setText(p.getMaPhong()+"");
         }
     }
 
@@ -211,11 +243,11 @@ public class QL_PhieuDichVu extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Mã dịch vụ", "Tên phòng (số phòng)", "Giá dịch vụ", "Ghi chú", "Trạng thái"
+                "Mã dịch vụ", "Tên dịch vụ", "Tên phòng (số phòng)", "Giá dịch vụ", "Ghi chú", "Trạng thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -314,6 +346,11 @@ public class QL_PhieuDichVu extends javax.swing.JInternalFrame {
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/search_25px.png"))); // NOI18N
         jButton3.setText("Tìm kiếm");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/broom_25px.png"))); // NOI18N
         jButton4.setText("Clear");
@@ -433,10 +470,26 @@ public class QL_PhieuDichVu extends javax.swing.JInternalFrame {
 
     private void btn_DichVuTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DichVuTimKiemActionPerformed
         // TODO add your handling code here:
+        String tk = txt_DichVuTimKiem.getText();
+        List<DichVu> data = dao_dv.findDataByName(tk);
+        DefaultTableModel model = (DefaultTableModel) tbl_DichVu.getModel();
+        model.setRowCount(0);
+        data.forEach((dichVu) -> {
+            model.addRow(new Object[]{dichVu.getMaDichVu(), dichVu.getTenDichVu(), dichVu.getGiaDichVu(), dichVu.getTrangThai() ? "Phục vụ" : "Không phục vụ"});
+        });
+        txt_DichVuTimKiem.setText("");
     }//GEN-LAST:event_btn_DichVuTimKiemActionPerformed
 
     private void btn_PhongTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PhongTimKiemActionPerformed
         // TODO add your handling code here:
+        String tk = txt_PhongTimKiem.getText();
+        List<Phong> data = dao_phong.findDataByName(tk);
+        DefaultTableModel model = (DefaultTableModel) btl_Phong.getModel();
+        model.setRowCount(0);
+        data.forEach((p) -> {
+            model.addRow(new Object[]{p.getMaPhong(), p.getTenPhong(), p.getTenDanhMuc(), p.getSoGiuong(), p.getGhiChu(), p.getTrangThai() ? "Còn trống" : "Đã đặt"});
+        });
+        txt_PhongTimKiem.setText("");
     }//GEN-LAST:event_btn_PhongTimKiemActionPerformed
 
     private void check_hoatDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_hoatDongActionPerformed
@@ -466,6 +519,17 @@ public class QL_PhieuDichVu extends javax.swing.JInternalFrame {
         loadPhieuDichVu();
         clear();
     }//GEN-LAST:event_add_PhieuDichVuActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        String tenDichVuTim = JOptionPane.showInputDialog(null, "Nhập vào tên dịch vụ ", "Tìm kiếm...", JOptionPane.INFORMATION_MESSAGE);
+        List<PhieuDichVu> data = dao.findDataByName(tenDichVuTim);
+        DefaultTableModel model = (DefaultTableModel) tbl_PhieuDichVu.getModel();
+        model.setRowCount(0);
+        data.forEach((pdv) -> {
+            model.addRow(new Object[]{pdv.getMaDichVu(),pdv.getTenDichVu(), pdv.getTenPhong(),pdv.getGiaDichVu(), pdv.getGhiChu(), pdv.getTrangThai()});
+        });
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
