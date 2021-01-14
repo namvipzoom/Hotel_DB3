@@ -305,6 +305,7 @@ public class QL_DichVu extends javax.swing.JInternalFrame {
         listDichVu.forEach((dichVu) -> {
             defaultTableModel.addRow(new Object[]{dichVu.getMaDichVu(), dichVu.getTenDichVu(), dichVu.getGiaDichVu(), dichVu.getTrangThai() ? "Phục vụ" : "Không phục vụ"});
         });
+        tbl_QuanLyDichVu.setModel(defaultTableModel);
     }
 
     private void clear() {

@@ -41,10 +41,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jTextField1" min="-2" pref="228" max="-2" attributes="0"/>
+              <Component id="txt_CMND" min="-2" pref="228" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="437" max="32767" attributes="0"/>
+              <EmptySpace pref="489" max="32767" attributes="0"/>
               <Component id="list_DanhMuc" min="-2" pref="178" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="list_TrangThai" min="-2" pref="118" max="-2" attributes="0"/>
@@ -60,7 +60,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="txt_CMND" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="list_TrangThai" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="list_DanhMuc" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
@@ -78,7 +78,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="tbl_HoaDon">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="12" rowCount="0">
@@ -180,10 +180,10 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="M&#xe3; kh&#xe1;ch h&#xe0;ng: "/>
+        <Property name="text" type="java.lang.String" value="CMND :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="txt_CMND">
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
@@ -192,6 +192,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="T&#xec;m ki&#x1ebf;m"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="list_TrangThai">
       <Properties>

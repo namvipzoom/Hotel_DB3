@@ -638,12 +638,15 @@ begin
 end
 go
 
-Create proc getAll_HoaDon
+create proc getAll_HoaDon
 as
 BEGIN
-	select * from HoaDon
+	select hd.*,nv.tenNhanVien,p.tenPhong from HoaDon hd 
+	join NhanVien nv on hd.maNhanVien = nv.maNhanVien
+	join Phong p on hd.maPhong = p.maPhong
 END
 go
+
 Create proc Find_maHoaDon
 @maHoaDon int  --Mã hóa đơn của khách hàng
 as
@@ -651,7 +654,27 @@ BEGIN
 	select * from HoaDon where maHoaDon = @maHoaDon
 END
 go
-
+Create proc find_HoaDonBy_CMND
+@CMND varchar(25) 
+as
+BEGIN
+	select hd.*,nv.tenNhanVien,p.tenPhong from HoaDon hd 
+	join NhanVien nv on hd.maNhanVien = nv.maNhanVien
+	join Phong p on hd.maPhong = p.maPhong
+	join KhachHang kh on hd.maKhachHang = kh.maKhachHang
+	where kh.CMND = @CMND
+END
+go
+Create proc get_HoaDon_Status
+@trangThai bit
+as
+BEGIN
+	select hd.*,nv.tenNhanVien,p.tenPhong from HoaDon hd 
+	join NhanVien nv on hd.maNhanVien = nv.maNhanVien
+	join Phong p on hd.maPhong = p.maPhong
+	where hd.trangThai = @trangThai
+END
+go
 Create proc find_HoaDonBy_MaKhachHang
 @maKhachHang int
 as
@@ -688,6 +711,7 @@ begin
 	select ptb.*, dm.tenDanhMuc as N'tenDanhMuc', tb.tenThietBi as N'tenThietBi' from PhieuThietBi ptb join ThietBi tb on tb.maThietBi = ptb.maThietBi join DanhMuc dm on dm.maDanhMuc = ptb.maDanhMuc
 end
 go
+
 
 
 create proc delete_PhieuThietBi
@@ -868,5 +892,6 @@ exec add_DichVu'Dịch vụ phòng 24/24',0,1
 go
 exec add_DichVu'Giặt ủi',0,1
 go
+select * from HoaDon
 
 
