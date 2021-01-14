@@ -22,10 +22,15 @@ public class Login_DB3 extends javax.swing.JFrame {
     /**
      * Creates new form Login_DB3
      */
+    public String nhanahas;
     public Login_DB3() {
+        
         initComponents();
         iDAO_NhanVien = new IDAO_NhanVien();
         setLocationRelativeTo(null);
+        
+        
+       
     }
 
     /**
@@ -79,10 +84,6 @@ public class Login_DB3 extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(125, 125, 125))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,11 +98,15 @@ public class Login_DB3 extends javax.swing.JFrame {
                     .addComponent(txtTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addGap(70, 70, 70)
                 .addComponent(btnDangNhap)
-                .addGap(50, 50, 50)
+                .addGap(52, 52, 52)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(125, 125, 125))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,11 +123,11 @@ public class Login_DB3 extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)))
-                .addGap(44, 44, 44)
+                .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -140,18 +145,23 @@ public class Login_DB3 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-        Hotel_DB3 hotel = new Hotel_DB3();
+      
+        
         String username = txtTaiKhoan.getText();
         String password = String.valueOf(txtMatKhau.getPassword());
         List<NhanVien> data = iDAO_NhanVien.getAllData();
         data.forEach((nv) -> {
             if (username.equalsIgnoreCase(nv.getMaNhanVien()) && password.equalsIgnoreCase(nv.getDienThoai())) {
+                NhanVien nv1 = new NhanVien();
+                 String tenNhanVien = nv.getTenNhanVien();
+                 nv1.setTenNhanVien(tenNhanVien); 
+                Hotel_DB3 hotel = new Hotel_DB3(nv1);
+                this.dispose();
                 hotel.setVisible(true);
                 hotel.pack();
                 hotel.setLocationRelativeTo(null);
                 hotel.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 hotel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Tài khoản hoặc mật khẩu của bạn không chính xác\n Vui lòng thử lại", "Lỗi", JOptionPane.WARNING_MESSAGE);
             }

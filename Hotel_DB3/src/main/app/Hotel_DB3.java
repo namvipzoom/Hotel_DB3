@@ -9,20 +9,31 @@
  */
 package main.app;
 
+import DAO.IDAO_NhanVien;
+import entities.NhanVien;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 
 public class Hotel_DB3 extends javax.swing.JFrame {
 
     /**
      * Creates new form Hotel_DB3
      */
-    public Hotel_DB3() {
+    private static NhanVien userlogin;
+  
+    public String username;
+    IDAO_NhanVien iDAO_NhanVien;
+    public Hotel_DB3(NhanVien nv) {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         QL_DatPhong datPhong = new QL_DatPhong();
         this.dsk_Main.add(datPhong);
-        datPhong.setVisible(true);
+        datPhong.setVisible(true); 
+        userlogin = nv;
+        txtTenNhanVien.setText(userlogin.getTenNhanVien());
     }
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,6 +45,8 @@ public class Hotel_DB3 extends javax.swing.JFrame {
     private void initComponents() {
 
         dsk_Main = new javax.swing.JDesktopPane();
+        btnDangXuat = new javax.swing.JLabel();
+        txtTenNhanVien = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menu_DatPhong = new javax.swing.JMenu();
         menu_HoaDon = new javax.swing.JMenu();
@@ -53,16 +66,34 @@ public class Hotel_DB3 extends javax.swing.JFrame {
 
         dsk_Main.setBackground(new java.awt.Color(153, 255, 153));
 
+        btnDangXuat.setText("Đăng xuất");
+        btnDangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDangXuatMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout dsk_MainLayout = new javax.swing.GroupLayout(dsk_Main);
         dsk_Main.setLayout(dsk_MainLayout);
         dsk_MainLayout.setHorizontalGroup(
             dsk_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1017, Short.MAX_VALUE)
+            .addGroup(dsk_MainLayout.createSequentialGroup()
+                .addContainerGap(786, Short.MAX_VALUE)
+                .addComponent(txtTenNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
         dsk_MainLayout.setVerticalGroup(
             dsk_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 980, Short.MAX_VALUE)
+            .addGroup(dsk_MainLayout.createSequentialGroup()
+                .addGroup(dsk_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTenNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 947, Short.MAX_VALUE))
         );
+        dsk_Main.setLayer(btnDangXuat, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        dsk_Main.setLayer(txtTenNhanVien, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         menu_DatPhong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/new_copy_25px.png"))); // NOI18N
         menu_DatPhong.setText("Đặt Phòng");
@@ -294,6 +325,17 @@ public class Hotel_DB3 extends javax.swing.JFrame {
         pdv.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void btnDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDangXuatMouseClicked
+           int reply = JOptionPane.showConfirmDialog(rootPane, "Bạn có muốn đăng xuất?","Thông báo",JOptionPane.WARNING_MESSAGE);
+            if (reply == JOptionPane.YES_OPTION) {
+       Login_DB3 login_DB3 = new Login_DB3();
+        login_DB3.setVisible(true);
+        dispose();
+        login_DB3.pack();
+        login_DB3.setLocationRelativeTo(null);
+        }
+    }//GEN-LAST:event_btnDangXuatMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -318,12 +360,11 @@ public class Hotel_DB3 extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new Hotel_DB3().setVisible(true);
-        });
+       ;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnDangXuat;
     private javax.swing.JDesktopPane dsk_Main;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -338,6 +379,7 @@ public class Hotel_DB3 extends javax.swing.JFrame {
     private javax.swing.JMenuItem menu_NhanVien;
     private javax.swing.JMenuItem menu_Phong;
     private javax.swing.JMenu menu_QuanLy;
+    private javax.swing.JLabel txtTenNhanVien;
     // End of variables declaration//GEN-END:variables
 
 }
