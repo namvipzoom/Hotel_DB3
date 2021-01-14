@@ -653,6 +653,11 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
+        btn_DatPhong.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_DatPhongMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -1225,7 +1230,6 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
         hoaDon.setMaKhuyenMai(khuyenMai.getMaKhuyenMai());
         hoaDon.setMaPhong(Integer.parseInt(txt_MaPhong.getText()));
 
-
         // Tổng tiền
         hoaDon.setTongTien(0);
 
@@ -1414,6 +1418,10 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txt_MaPhongActionPerformed
 
     private void btn_DatPhongAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_btn_DatPhongAncestorAdded
+        
+    }//GEN-LAST:event_btn_DatPhongAncestorAdded
+
+    private void btn_DatPhongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_DatPhongMouseClicked
         HoaDon hoaDon = new HoaDon();
         //Ngày tháng
         int soNgay = 0;
@@ -1431,10 +1439,12 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
             Logger.getLogger(QL_DatPhong.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-         NhanVien nhanVien = (NhanVien) list_MaNhanVien.getSelectedItem();
+        NhanVien nhanVien = (NhanVien) list_MaNhanVien.getSelectedItem();
         hoaDon.setMaNhanVien(nhanVien.getMaNhanVien());
         hoaDon.setMaKhachHang(Integer.parseInt(txt_MaKhachHang.getText()));
         hoaDon.setMaPhong(Integer.parseInt(txt_MaPhong.getText()));
+//        hoaDon.setMaKhachHang(Integer.parseInt("1"));
+//        hoaDon.setMaPhong(Integer.parseInt("1"));
         hoaDon.setNgayDen(ngayDen);
         hoaDon.setNgayDi(ngayDi);
         hoaDon.setDatCoc(Float.parseFloat(txt_DatCoc.getText()));
@@ -1444,13 +1454,12 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
         hoaDon.setTrangThai(check_ChuaThanhToan.isSelected());
         hoaDon.setSoLuot(0);
         hoaDon.setTongTien(0);
-        
+
         System.out.println(hoaDon.toString());
 
         iDAO_HoaDon.insertData(hoaDon);
-        btn_DatPhong.setEnabled(false);
 //        Clear();
-    }//GEN-LAST:event_btn_DatPhongAncestorAdded
+    }//GEN-LAST:event_btn_DatPhongMouseClicked
 
     private void locPhong() {
         DefaultComboBoxModel boxModel = (DefaultComboBoxModel) list_Status.getModel();
