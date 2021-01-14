@@ -19,6 +19,9 @@ public class Hotel_DB3 extends javax.swing.JFrame {
     public Hotel_DB3() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        QL_DatPhong datPhong = new QL_DatPhong();
+        this.dsk_Main.add(datPhong);
+        datPhong.setVisible(true);
     }
 
     /**
