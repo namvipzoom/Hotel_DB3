@@ -23,6 +23,16 @@ public class HoaDon {
     private int maKhuyenMai;
     private float tongTien;
     private String ghiChu;
+<<<<<<< HEAD
+    private Boolean trangThai;
+    private String tenNhanVien;
+    private String tenPhong;
+
+    public HoaDon() {
+    }
+
+    public HoaDon(int maHoaDon, String maNhanVien, int maKhachHang, int maPhong, String ngayDen, String ngayDi, float datCoc, int maKhuyenMai, float tongTien, String ghiChu, Boolean trangThai, String tenNhanVien, String tenPhong) {
+=======
     private boolean trangThai;
     private int soLuot;
     
@@ -30,6 +40,7 @@ public class HoaDon {
     }
 
     public HoaDon(int maHoaDon, String maNhanVien, int maKhachHang, int maPhong, String ngayDen, String ngayDi, float datCoc, int maKhuyenMai, float tongTien, String ghiChu, boolean trangThai, int soLuot) {
+>>>>>>> 720fdf34d7a44ae981af4c3ab85ed0c74fa30160
         this.maHoaDon = maHoaDon;
         this.maNhanVien = maNhanVien;
         this.maKhachHang = maKhachHang;
@@ -41,7 +52,12 @@ public class HoaDon {
         this.tongTien = tongTien;
         this.ghiChu = ghiChu;
         this.trangThai = trangThai;
+<<<<<<< HEAD
+        this.tenNhanVien = tenNhanVien;
+        this.tenPhong = tenPhong;
+=======
         this.soLuot = soLuot;
+>>>>>>> 720fdf34d7a44ae981af4c3ab85ed0c74fa30160
     }
 
     public int getMaHoaDon() {
@@ -124,14 +140,31 @@ public class HoaDon {
         this.ghiChu = ghiChu;
     }
 
-    public boolean isTrangThai() {
+    public Boolean getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(boolean trangThai) {
+    public void setTrangThai(Boolean trangThai) {
         this.trangThai = trangThai;
     }
 
+<<<<<<< HEAD
+    public String getTenNhanVien() {
+        return tenNhanVien;
+    }
+
+    public void setTenNhanVien(String tenNhanVien) {
+        this.tenNhanVien = tenNhanVien;
+    }
+
+    public String getTenPhong() {
+        return tenPhong;
+    }
+
+    public void setTenPhong(String tenPhong) {
+        this.tenPhong = tenPhong;
+    }
+=======
     public int getSoLuot() {
         return soLuot;
     }
@@ -148,10 +181,9 @@ public class HoaDon {
     
 
    
+>>>>>>> 720fdf34d7a44ae981af4c3ab85ed0c74fa30160
 
-    
 
-    
     
 
 }

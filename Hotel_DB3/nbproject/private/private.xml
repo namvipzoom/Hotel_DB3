@@ -1,30 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="4">
-        <file>
-            <url>src/DAO/IDAO_PhieuThietBi.java</url>
-            <bookmark id="3">
-                <name/>
-                <line>31</line>
-                <key/>
-            </bookmark>
-            <bookmark id="2">
-                <name/>
-                <line>120</line>
-                <key/>
-            </bookmark>
-            <bookmark id="4">
-                <name/>
-                <line>124</line>
-                <key/>
-            </bookmark>
-        </file>
-    </editor-bookmarks>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/C:/Users/DUY/Documents/NetBeansProjects/Hotel_DB3/Hotel_DB3/src/main/app/Login_DB3.java</file>
+            <file>file:/C:/Users/DUY/Documents/NetBeansProjects/Hotel_DB3/Hotel_DB3/src/DAO/IDAO_PhieuThietBi.java</file>
+            <file>file:/C:/Users/DUY/Documents/NetBeansProjects/Hotel_DB3/Hotel_DB3/src/main/app/QL_PhieuThietBi.java</file>
+            <file>file:/C:/Users/DUY/Documents/NetBeansProjects/Hotel_DB3/Hotel_DB3/src/Connect/Check_Validate.java</file>
+            <file>file:/C:/Users/DUY/Documents/NetBeansProjects/Hotel_DB3/Hotel_DB3/src/main/app/Hotel_DB3.java</file>
+            <file>file:/C:/Users/DUY/Documents/NetBeansProjects/Hotel_DB3/Hotel_DB3/src/main/app/QL_HoaDon.java</file>
+            <file>file:/C:/Users/DUY/Documents/NetBeansProjects/Hotel_DB3/Hotel_DB3/src/Connect/Connection_DB.java</file>
+            <file>file:/C:/Users/DUY/Documents/NetBeansProjects/Hotel_DB3/Hotel_DB3/src/main/app/QL_DatPhong.java</file>
+            <file>file:/C:/Users/DUY/Documents/NetBeansProjects/Hotel_DB3/Hotel_DB3/src/entities/HoaDon.java</file>
+=======
             <file>file:/C:/Users/dell/Desktop/DoAn/Hotel_DB3/src/main/app/QL_DatPhong.java</file>
             <file>file:/C:/Users/dell/Desktop/DoAn/Hotel_DB3/src/main/app/Hotel_DB3.java</file>
+<<<<<<< HEAD
             <file>file:/C:/Users/dell/Desktop/DoAn/Hotel_DB3/src/main/app/QL_DichVu.java</file>
+=======
+>>>>>>> 720fdf34d7a44ae981af4c3ab85ed0c74fa30160
+>>>>>>> 5c0759898dc0c4908b0d9edcb682c5be72b8bdb0
         </group>
     </open-files>
 </project-private>

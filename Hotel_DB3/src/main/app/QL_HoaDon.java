@@ -6,16 +6,22 @@
 package main.app;
 
 import DAO.IDAO_DanhMuc;
+import DAO.IDAO_HoaDon;
 import entities.DanhMuc;
+import entities.HoaDon;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author dell
  */
 public class QL_HoaDon extends javax.swing.JInternalFrame {
-    
+
     IDAO_DanhMuc iDAO_DanhMuc;
+    IDAO_HoaDon iDAO_HoaDon;
 
     /**
      * Creates new form QL_HoaDon
@@ -23,7 +29,9 @@ public class QL_HoaDon extends javax.swing.JInternalFrame {
     public QL_HoaDon() {
         initComponents();
         iDAO_DanhMuc = new IDAO_DanhMuc();
+        iDAO_HoaDon = new IDAO_HoaDon();
         loadDanhMuc();
+        loadHoaDon();
     }
 
     /**
@@ -36,10 +44,10 @@ public class QL_HoaDon extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_HoaDon = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_CMND = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         list_TrangThai = new javax.swing.JComboBox<>();
         list_DanhMuc = new javax.swing.JComboBox<>();
@@ -52,7 +60,7 @@ public class QL_HoaDon extends javax.swing.JInternalFrame {
         setInheritsPopupMenu(true);
         setVisible(true);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_HoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -68,31 +76,36 @@ public class QL_HoaDon extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(15);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(25);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(25);
-            jTable1.getColumnModel().getColumn(4).setPreferredWidth(23);
-            jTable1.getColumnModel().getColumn(5).setPreferredWidth(25);
-            jTable1.getColumnModel().getColumn(6).setPreferredWidth(25);
-            jTable1.getColumnModel().getColumn(7).setPreferredWidth(20);
-            jTable1.getColumnModel().getColumn(8).setPreferredWidth(20);
-            jTable1.getColumnModel().getColumn(9).setPreferredWidth(25);
-            jTable1.getColumnModel().getColumn(10).setPreferredWidth(120);
-            jTable1.getColumnModel().getColumn(11).setPreferredWidth(20);
+        jScrollPane1.setViewportView(tbl_HoaDon);
+        if (tbl_HoaDon.getColumnModel().getColumnCount() > 0) {
+            tbl_HoaDon.getColumnModel().getColumn(0).setResizable(false);
+            tbl_HoaDon.getColumnModel().getColumn(0).setPreferredWidth(10);
+            tbl_HoaDon.getColumnModel().getColumn(1).setPreferredWidth(15);
+            tbl_HoaDon.getColumnModel().getColumn(2).setPreferredWidth(25);
+            tbl_HoaDon.getColumnModel().getColumn(3).setPreferredWidth(25);
+            tbl_HoaDon.getColumnModel().getColumn(4).setPreferredWidth(23);
+            tbl_HoaDon.getColumnModel().getColumn(5).setPreferredWidth(25);
+            tbl_HoaDon.getColumnModel().getColumn(6).setPreferredWidth(25);
+            tbl_HoaDon.getColumnModel().getColumn(7).setPreferredWidth(20);
+            tbl_HoaDon.getColumnModel().getColumn(8).setPreferredWidth(20);
+            tbl_HoaDon.getColumnModel().getColumn(9).setPreferredWidth(25);
+            tbl_HoaDon.getColumnModel().getColumn(10).setPreferredWidth(120);
+            tbl_HoaDon.getColumnModel().getColumn(11).setPreferredWidth(20);
         }
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 102));
         jLabel1.setText("DANH SÁCH HÓA ĐƠN");
 
-        jLabel2.setText("Mã khách hàng: ");
+        jLabel2.setText("CMND :");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/search_25px.png"))); // NOI18N
         jButton1.setText("Tìm kiếm");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         list_TrangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Đã thanh toán", "Chưa thanh toán" }));
         list_TrangThai.addActionListener(new java.awt.event.ActionListener() {
@@ -116,10 +129,10 @@ public class QL_HoaDon extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_CMND, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 437, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 489, Short.MAX_VALUE)
                 .addComponent(list_DanhMuc, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(list_TrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -133,7 +146,7 @@ public class QL_HoaDon extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jButton1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_CMND, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(list_TrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(list_DanhMuc, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
@@ -142,10 +155,34 @@ public class QL_HoaDon extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public void loadHoaDon() {
+        DefaultTableModel defaultTableModel = (DefaultTableModel) tbl_HoaDon.getModel();
+        List<HoaDon> listDichVu = iDAO_HoaDon.getAllData();
+        defaultTableModel.setRowCount(0);
+        int i = 1;
+        for (HoaDon hd : listDichVu) {
+            defaultTableModel.addRow(new Object[]{i, hd.getMaHoaDon(), hd.getTenNhanVien(), hd.getMaKhachHang(), hd.getTenPhong(), hd.getNgayDen(), hd.getNgayDi(), hd.getDatCoc(), hd.getMaKhuyenMai(), hd.getTongTien(), hd.getGhiChu(), hd.getTrangThai() ? "Đã thanh toán" : "Chưa thanh toán"});
+            i++;
+        }
+        tbl_HoaDon.setModel(defaultTableModel);
 
+    }
     private void list_TrangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_list_TrangThaiActionPerformed
         // TODO add your handling code here:
+        
+
+
     }//GEN-LAST:event_list_TrangThaiActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String CMND = txt_CMND.getText();
+        DefaultTableModel defaultTableModel = (DefaultTableModel) tbl_HoaDon.getModel();
+        HoaDon hd = iDAO_HoaDon.findDataByCMND(CMND);
+        defaultTableModel.setRowCount(0);
+        defaultTableModel.addRow(new Object[]{1, hd.getMaHoaDon(), hd.getTenNhanVien(), hd.getMaKhachHang(), hd.getTenPhong(), hd.getNgayDen(), hd.getNgayDi(), hd.getDatCoc(), hd.getMaKhuyenMai(), hd.getTongTien(), hd.getGhiChu(), hd.getTrangThai() ? "Đã thanh toán" : "Chưa thanh toán"});
+        tbl_HoaDon.setModel(defaultTableModel);
+    }//GEN-LAST:event_jButton1ActionPerformed
     private void loadDanhMuc() {
         List<DanhMuc> listDanhMuc = iDAO_DanhMuc.getAllData();
         listDanhMuc.forEach((danhMuc) -> {
@@ -158,10 +195,10 @@ public class QL_HoaDon extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox<DanhMuc> list_DanhMuc;
     private javax.swing.JComboBox<String> list_TrangThai;
+    private javax.swing.JTable tbl_HoaDon;
+    private javax.swing.JTextField txt_CMND;
     // End of variables declaration//GEN-END:variables
 
 }

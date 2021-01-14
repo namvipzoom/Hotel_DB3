@@ -35,6 +35,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
+import Connect.Check_Validate;
 
 /**
  *
@@ -51,6 +52,7 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
     private IDAO_PhieuThietBi iDAO_PhieuThietBi;
     private IDAO_ThietBi iDAO_ThietBi;
     private IDAO_HoaDon iDAO_HoaDon;
+    private Check_Validate check;
 
     public QL_DatPhong() {
         initComponents();
@@ -1206,18 +1208,56 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
         int soNgay = 0;
         String ngayDen = null;
         String ngayDi = null;
-        try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            ngayDen = dateFormat.format(date_NgayDen.getDate());
-            ngayDi = dateFormat.format(date_NgayDi.getDate());
-            Date dateNgayDi = dateFormat.parse(ngayDi);
-            Date dateNgayDen = dateFormat.parse(ngayDen);
-            long numberDate = dateNgayDi.getTime() - dateNgayDen.getTime();
-            soNgay = (int) ((numberDate / (1000 * 60 * 60 * 24)) + 1);
-        } catch (ParseException ex) {
-            Logger.getLogger(QL_DatPhong.class.getName()).log(Level.SEVERE, null, ex);
+        String tb = "";
+        if (txt_MaKhachHang.getText().length() == 0) {
+            tb += "Mã khách hàng không được để trống \n";
+        }
+        if (date_NgayDen.getDate() == null) {
+            tb += "Ngày đến không được để trống \n";
+        }
+        if (date_NgayDi.getDate() == null) {
+            tb += "Ngày đi không được để trống \n";
+        }
+        if (!check.isNumeric(txt_DatCoc.getText())) {
+            tb += "Tiền đặt cọc phải là số";
+        }
+        if (txt_MaKhachHang.getText().length() > 0 && date_NgayDen.getDate() != null && date_NgayDi.getDate() != null && check.isNumeric(txt_DatCoc.getText())) {
+            try {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                ngayDen = dateFormat.format(date_NgayDen.getDate());
+                ngayDi = dateFormat.format(date_NgayDi.getDate());
+                Date dateNgayDi = dateFormat.parse(ngayDi);
+                Date dateNgayDen = dateFormat.parse(ngayDen);
+                long numberDate = dateNgayDi.getTime() - dateNgayDen.getTime();
+                soNgay = (int) ((numberDate / (1000 * 60 * 60 * 24)) + 1);
+            } catch (ParseException ex) {
+                Logger.getLogger(QL_DatPhong.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            hoaDon.setMaKhachHang(Integer.parseInt(txt_MaKhachHang.getText()));
+            hoaDon.setDatCoc(Float.parseFloat(txt_DatCoc.getText()));
+            hoaDon.setGhiChu(txt_GhiChu.getText());
+            hoaDon.setTrangThai(check_ThanhToan.isSelected());
+            hoaDon.setNgayDen(ngayDen);
+            hoaDon.setNgayDi(ngayDi);
+            NhanVien nhanVien = (NhanVien) list_MaNhanVien.getSelectedItem();
+            hoaDon.setMaNhanVien(nhanVien.getMaNhanVien());
+            KhuyenMai khuyenMai = (KhuyenMai) list_KhuyenMai.getSelectedItem();
+            hoaDon.setMaKhuyenMai(khuyenMai.getMaKhuyenMai());
+            hoaDon.setMaPhong(Integer.parseInt(txt_MaPhong.getText()));
+
+            System.out.println(nhanVien.getMaNhanVien());
+
+            // Tổng tiền
+            hoaDon.setTongTien(0);
+
+            iDAO_HoaDon.insertData(hoaDon);
+            Clear();
+        }else{
+            JOptionPane.showMessageDialog(this, tb, "Thông Báo",JOptionPane.WARNING_MESSAGE);
         }
 
+<<<<<<< HEAD
 //        hoaDon.setMaKhachHang(Integer.parseInt(txt_MaKhachHang.getText()));
 //        System.out.println(txt_MaKhachHang.getText());
 //        hoaDon.setDatCoc(Float.parseFloat(txt_DatCoc.getText()));
@@ -1239,6 +1279,30 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
         btn_DatPhong.setEnabled(true);
         btn_ThanhToan.setEnabled(false);
         JOptionPane.showMessageDialog(this, "Show");
+=======
+<<<<<<< HEAD
+=======
+        hoaDon.setMaKhachHang(Integer.parseInt(txt_MaKhachHang.getText()));
+        System.out.println(txt_MaKhachHang.getText());
+        hoaDon.setDatCoc(Float.parseFloat(txt_DatCoc.getText()));
+        hoaDon.setGhiChu(txt_GhiChu.getText());
+        hoaDon.setTrangThai(check_ThanhToan.isSelected());
+        hoaDon.setNgayDen(ngayDen);
+        hoaDon.setNgayDi(ngayDi);
+        NhanVien nhanVien = (NhanVien) list_MaNhanVien.getSelectedItem();
+        hoaDon.setMaNhanVien(nhanVien.getMaNhanVien());
+        KhuyenMai khuyenMai = (KhuyenMai) list_KhuyenMai.getSelectedItem();
+        hoaDon.setMaKhuyenMai(khuyenMai.getMaKhuyenMai());
+        hoaDon.setMaPhong(Integer.parseInt(txt_MaPhong.getText()));
+
+
+        // Tổng tiền
+        hoaDon.setTongTien(0);
+
+        iDAO_HoaDon.insertData(hoaDon);
+        Clear();
+>>>>>>> 720fdf34d7a44ae981af4c3ab85ed0c74fa30160
+>>>>>>> 5c0759898dc0c4908b0d9edcb682c5be72b8bdb0
     }//GEN-LAST:event_btn_ThanhToanActionPerformed
 
     private void Clear() {
