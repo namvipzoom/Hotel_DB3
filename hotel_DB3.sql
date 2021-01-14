@@ -638,7 +638,7 @@ begin
 end
 go
 
-Create proc getAll_HoaDon
+create proc getAll_HoaDon
 as
 BEGIN
 	select hd.*,nv.tenNhanVien,p.tenPhong from HoaDon hd 
@@ -711,6 +711,7 @@ begin
 	select ptb.*, dm.tenDanhMuc as N'tenDanhMuc', tb.tenThietBi as N'tenThietBi' from PhieuThietBi ptb join ThietBi tb on tb.maThietBi = ptb.maThietBi join DanhMuc dm on dm.maDanhMuc = ptb.maDanhMuc
 end
 go
+
 
 
 create proc delete_PhieuThietBi
