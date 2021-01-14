@@ -7,6 +7,7 @@ package main.app;
 
 import DAO.IDAO_NhanVien;
 import entities.NhanVien;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -137,11 +138,11 @@ public class Login_DB3 extends javax.swing.JFrame {
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         Hotel_DB3 hotel = new Hotel_DB3();
-        String tb = "";
         String username = txtTaiKhoan.getText();
         String password = String.valueOf(txtMatKhau.getPassword());
-        NhanVien nhanVien = iDAO_NhanVien.Login(username, password);
-        if (username.equalsIgnoreCase(nhanVien.getMaNhanVien())  && password.equalsIgnoreCase(nhanVien.getDienThoai())) {
+        List<NhanVien> data = iDAO_NhanVien.getAllData();
+        for (NhanVien nv : data) {
+          if (username.equalsIgnoreCase(nv.getMaNhanVien())  && password.equalsIgnoreCase(nv.getDienThoai())) {
             hotel.setVisible(true);
         hotel.pack();
         hotel.setLocationRelativeTo(null);
@@ -149,8 +150,10 @@ public class Login_DB3 extends javax.swing.JFrame {
         hotel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.dispose();
         }else{
-            JOptionPane.showMessageDialog(null,tb,"ok",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane,"Tài khoản hoặc mật khẩu của bạn không chính xác\n Vui lòng thử lại","Lỗi",JOptionPane.WARNING_MESSAGE);
         }
+        }
+        
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
