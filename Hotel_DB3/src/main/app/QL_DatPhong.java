@@ -542,6 +542,7 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
         btn_ThanhToan.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btn_ThanhToan.setForeground(new java.awt.Color(0, 0, 102));
         btn_ThanhToan.setText("Thanh toán");
+        btn_ThanhToan.setEnabled(false);
         btn_ThanhToan.setOpaque(true);
         btn_ThanhToan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1217,24 +1218,27 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
             Logger.getLogger(QL_DatPhong.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        hoaDon.setMaKhachHang(Integer.parseInt(txt_MaKhachHang.getText()));
-        System.out.println(txt_MaKhachHang.getText());
-        hoaDon.setDatCoc(Float.parseFloat(txt_DatCoc.getText()));
-        hoaDon.setGhiChu(txt_GhiChu.getText());
-        hoaDon.setTrangThai(check_ThanhToan.isSelected());
-        hoaDon.setNgayDen(ngayDen);
-        hoaDon.setNgayDi(ngayDi);
-        NhanVien nhanVien = (NhanVien) list_MaNhanVien.getSelectedItem();
-        hoaDon.setMaNhanVien(nhanVien.getMaNhanVien());
-        KhuyenMai khuyenMai = (KhuyenMai) list_KhuyenMai.getSelectedItem();
-        hoaDon.setMaKhuyenMai(khuyenMai.getMaKhuyenMai());
-        hoaDon.setMaPhong(Integer.parseInt(txt_MaPhong.getText()));
-
-        // Tổng tiền
-        hoaDon.setTongTien(0);
-
-        iDAO_HoaDon.insertData(hoaDon);
+//        hoaDon.setMaKhachHang(Integer.parseInt(txt_MaKhachHang.getText()));
+//        System.out.println(txt_MaKhachHang.getText());
+//        hoaDon.setDatCoc(Float.parseFloat(txt_DatCoc.getText()));
+//        hoaDon.setGhiChu(txt_GhiChu.getText());
+//        hoaDon.setTrangThai(check_ThanhToan.isSelected());
+//        hoaDon.setNgayDen(ngayDen);
+//        hoaDon.setNgayDi(ngayDi);
+//        NhanVien nhanVien = (NhanVien) list_MaNhanVien.getSelectedItem();
+//        hoaDon.setMaNhanVien(nhanVien.getMaNhanVien());
+//        KhuyenMai khuyenMai = (KhuyenMai) list_KhuyenMai.getSelectedItem();
+//        hoaDon.setMaKhuyenMai(khuyenMai.getMaKhuyenMai());
+//        hoaDon.setMaPhong(Integer.parseInt(txt_MaPhong.getText()));
+//
+//        // Tổng tiền
+//        hoaDon.setTongTien(0);
+//
+//        iDAO_HoaDon.insertData(hoaDon);
         Clear();
+        btn_DatPhong.setEnabled(true);
+        btn_ThanhToan.setEnabled(false);
+        JOptionPane.showMessageDialog(this, "Show");
     }//GEN-LAST:event_btn_ThanhToanActionPerformed
 
     private void Clear() {
@@ -1418,7 +1422,7 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txt_MaPhongActionPerformed
 
     private void btn_DatPhongAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_btn_DatPhongAncestorAdded
-        
+
     }//GEN-LAST:event_btn_DatPhongAncestorAdded
 
     private void btn_DatPhongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_DatPhongMouseClicked
@@ -1438,27 +1442,27 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
         } catch (ParseException ex) {
             Logger.getLogger(QL_DatPhong.class.getName()).log(Level.SEVERE, null, ex);
         }
+//
+//        NhanVien nhanVien = (NhanVien) list_MaNhanVien.getSelectedItem();
+//        hoaDon.setMaNhanVien(nhanVien.getMaNhanVien());
+//        hoaDon.setMaKhachHang(Integer.parseInt(txt_MaKhachHang.getText()));
+//        hoaDon.setMaPhong(Integer.parseInt(txt_MaPhong.getText()));
+//        hoaDon.setNgayDen(ngayDen);
+//        hoaDon.setNgayDi(ngayDi);
+//        hoaDon.setDatCoc(Float.parseFloat(txt_DatCoc.getText()));
+//        KhuyenMai khuyenMai = (KhuyenMai) list_KhuyenMai.getSelectedItem();
+//        hoaDon.setMaKhuyenMai(khuyenMai.getMaKhuyenMai());
+//        hoaDon.setGhiChu(txt_GhiChu.getText());
+//        hoaDon.setTrangThai(check_ChuaThanhToan.isSelected());
+//        hoaDon.setSoLuot(0);
+//        hoaDon.setTongTien(0);
+//        System.out.println(hoaDon.toString());
 
-        NhanVien nhanVien = (NhanVien) list_MaNhanVien.getSelectedItem();
-        hoaDon.setMaNhanVien(nhanVien.getMaNhanVien());
-        hoaDon.setMaKhachHang(Integer.parseInt(txt_MaKhachHang.getText()));
-        hoaDon.setMaPhong(Integer.parseInt(txt_MaPhong.getText()));
-//        hoaDon.setMaKhachHang(Integer.parseInt("1"));
-//        hoaDon.setMaPhong(Integer.parseInt("1"));
-        hoaDon.setNgayDen(ngayDen);
-        hoaDon.setNgayDi(ngayDi);
-        hoaDon.setDatCoc(Float.parseFloat(txt_DatCoc.getText()));
-        KhuyenMai khuyenMai = (KhuyenMai) list_KhuyenMai.getSelectedItem();
-        hoaDon.setMaKhuyenMai(khuyenMai.getMaKhuyenMai());
-        hoaDon.setGhiChu(txt_GhiChu.getText());
-        hoaDon.setTrangThai(check_ChuaThanhToan.isSelected());
-        hoaDon.setSoLuot(0);
-        hoaDon.setTongTien(0);
-
-        System.out.println(hoaDon.toString());
-
-        iDAO_HoaDon.insertData(hoaDon);
+//        iDAO_HoaDon.insertData(hoaDon);
 //        Clear();
+        btn_DatPhong.setEnabled(false);
+        btn_DatPhong.setEnabled(true);
+        JOptionPane.showMessageDialog(this, "ok");
     }//GEN-LAST:event_btn_DatPhongMouseClicked
 
     private void locPhong() {
