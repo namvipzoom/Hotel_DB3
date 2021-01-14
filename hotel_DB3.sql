@@ -787,4 +787,68 @@ go
 exec add_DanhMuc 'Connecting Tripple Bed Room',4000000,'',1
 go
 
+exec add_Phong '101',1,1,'',1
+go
+exec add_Phong '102',1,1,'',1
+go
+exec add_Phong '103',1,1,'',1
+go
+exec add_Phong '104',2,2,'',1
+go
+exec add_Phong '105',2,2,'',1
+go
+exec add_Phong '106',2,2,'',1
+go
+exec add_Phong '107',3,2,'',1
+go
+exec add_Phong '108',3,2,'',1
+go
+exec add_Phong '109',3,2,'',1
+go
+exec add_Phong '110',4,3,'',1
+go
+exec add_Phong '111',4,3,'',1
+go
+exec add_Phong '112',4,3,'',1
+go
+exec add_Phong '201',5,1,'',1
+go
+exec add_Phong '202',5,1,'',1
+go
+exec add_Phong '203',5,1,'',1
+go
+exec add_Phong '204',6,2,'',1
+go
+exec add_Phong '205',6,2,'',1
+go
+exec add_Phong '206',6,2,'',1
+go
+exec add_Phong '207',7,2,'',1
+go
+exec add_Phong '208',7,2,'',1
+go
+exec add_Phong '209',7,2,'',1
+go
+exec add_Phong '210',8,3,'',1
+go
+exec add_Phong '211',8,3,'',1
+go
+exec add_Phong '212',8,3,'',1
+go
+
+exec add_DichVu'Trông trẻ',0,1
+go
+exec add_DichVu'Dịch vụ phục vụ người khuyết tật',0,1
+go
+exec add_DichVu'Dịch vụ phòng 24/24',0,1
+go
+exec add_DichVu'Giặt ủi',0,1
+go
+
+create proc login 
+@maNhanVien Varchar (5),
+@dienThoai Varchar (20)
+as
+select * from NhanVien where maNhanVien=@maNhanVien and dienThoai=@dienThoai
+
 
