@@ -544,7 +544,6 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
         btn_ThanhToan.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btn_ThanhToan.setForeground(new java.awt.Color(0, 0, 102));
         btn_ThanhToan.setText("Thanh toán");
-        btn_ThanhToan.setEnabled(false);
         btn_ThanhToan.setOpaque(true);
         btn_ThanhToan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -821,7 +820,6 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
         );
 
         tbl_DichVu.setBackground(new java.awt.Color(204, 255, 255));
-        tbl_DichVu.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         tbl_DichVu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -902,7 +900,6 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
 
         tbl_Phong.setBackground(new java.awt.Color(102, 255, 255));
         tbl_Phong.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 255)));
-        tbl_Phong.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         tbl_Phong.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -955,7 +952,6 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
         });
 
         tbl_KhachHang.setBackground(new java.awt.Color(204, 255, 255));
-        tbl_KhachHang.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         tbl_KhachHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -985,7 +981,6 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
         }
 
         tbl_ThietBi.setBackground(new java.awt.Color(204, 255, 255));
-        tbl_ThietBi.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         tbl_ThietBi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -1235,6 +1230,7 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
             }
 
             hoaDon.setMaKhachHang(Integer.parseInt(txt_MaKhachHang.getText()));
+            System.out.println(txt_MaKhachHang.getText());
             hoaDon.setDatCoc(Float.parseFloat(txt_DatCoc.getText()));
             hoaDon.setGhiChu(txt_GhiChu.getText());
             hoaDon.setTrangThai(check_ThanhToan.isSelected());
@@ -1246,42 +1242,19 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
             hoaDon.setMaKhuyenMai(khuyenMai.getMaKhuyenMai());
             hoaDon.setMaPhong(Integer.parseInt(txt_MaPhong.getText()));
 
-            System.out.println(nhanVien.getMaNhanVien());
-
             // Tổng tiền
             hoaDon.setTongTien(0);
 
             iDAO_HoaDon.insertData(hoaDon);
-            Clear();
-        }else{
-            JOptionPane.showMessageDialog(this, tb, "Thông Báo",JOptionPane.WARNING_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, tb, "Thông Báo", JOptionPane.WARNING_MESSAGE);
         }
 
-<<<<<<< HEAD
-//        hoaDon.setMaKhachHang(Integer.parseInt(txt_MaKhachHang.getText()));
-//        System.out.println(txt_MaKhachHang.getText());
-//        hoaDon.setDatCoc(Float.parseFloat(txt_DatCoc.getText()));
-//        hoaDon.setGhiChu(txt_GhiChu.getText());
-//        hoaDon.setTrangThai(check_ThanhToan.isSelected());
-//        hoaDon.setNgayDen(ngayDen);
-//        hoaDon.setNgayDi(ngayDi);
-//        NhanVien nhanVien = (NhanVien) list_MaNhanVien.getSelectedItem();
-//        hoaDon.setMaNhanVien(nhanVien.getMaNhanVien());
-//        KhuyenMai khuyenMai = (KhuyenMai) list_KhuyenMai.getSelectedItem();
-//        hoaDon.setMaKhuyenMai(khuyenMai.getMaKhuyenMai());
-//        hoaDon.setMaPhong(Integer.parseInt(txt_MaPhong.getText()));
-//
-//        // Tổng tiền
-//        hoaDon.setTongTien(0);
-//
-//        iDAO_HoaDon.insertData(hoaDon);
         Clear();
         btn_DatPhong.setEnabled(true);
         btn_ThanhToan.setEnabled(false);
         JOptionPane.showMessageDialog(this, "Show");
-=======
-<<<<<<< HEAD
-=======
+
         hoaDon.setMaKhachHang(Integer.parseInt(txt_MaKhachHang.getText()));
         System.out.println(txt_MaKhachHang.getText());
         hoaDon.setDatCoc(Float.parseFloat(txt_DatCoc.getText()));
@@ -1295,14 +1268,11 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
         hoaDon.setMaKhuyenMai(khuyenMai.getMaKhuyenMai());
         hoaDon.setMaPhong(Integer.parseInt(txt_MaPhong.getText()));
 
-
         // Tổng tiền
         hoaDon.setTongTien(0);
 
         iDAO_HoaDon.insertData(hoaDon);
         Clear();
->>>>>>> 720fdf34d7a44ae981af4c3ab85ed0c74fa30160
->>>>>>> 5c0759898dc0c4908b0d9edcb682c5be72b8bdb0
     }//GEN-LAST:event_btn_ThanhToanActionPerformed
 
     private void Clear() {

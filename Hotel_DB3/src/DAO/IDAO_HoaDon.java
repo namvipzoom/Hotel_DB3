@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  *
  * @author DUY
  */
-public class IDAO_HoaDon implements IDAO_Manager<HoaDon, Integer, Object, Boolean>{
+public class IDAO_HoaDon implements IDAO_Manager<HoaDon, Integer, Object, Boolean> {
 
     @Override
     public List<HoaDon> getAllData() {
@@ -51,7 +51,7 @@ public class IDAO_HoaDon implements IDAO_Manager<HoaDon, Integer, Object, Boolea
 
     @Override
     public HoaDon findDataById(Integer id) {
-        ResultSet rs = Connection_DB.executeQuery("{Call find_maHoaDon(?)}",id);
+        ResultSet rs = Connection_DB.executeQuery("{Call find_maHoaDon(?)}", id);
         try {
             while (rs.next()) {
                 HoaDon hd = new HoaDon();
@@ -75,13 +75,14 @@ public class IDAO_HoaDon implements IDAO_Manager<HoaDon, Integer, Object, Boolea
         }
         return null;
     }
+
     public List<HoaDon> findDataByStatus(Integer id) {
         List<HoaDon> data = new ArrayList<>();
-        ResultSet rs = Connection_DB.executeQuery("{Call get_HoaDon_Status(?)}",id);
+        ResultSet rs = Connection_DB.executeQuery("{Call get_HoaDon_Status(?)}", id);
         try {
             while (rs.next()) {
                 HoaDon hd = new HoaDon();
-               hd.setMaHoaDon(rs.getInt("maHoaDon"));
+                hd.setMaHoaDon(rs.getInt("maHoaDon"));
                 hd.setMaNhanVien(rs.getString("maNhanVien"));
                 hd.setMaKhachHang(rs.getInt("maKhachHang"));
                 hd.setMaPhong(rs.getInt("maPhong"));
@@ -102,9 +103,9 @@ public class IDAO_HoaDon implements IDAO_Manager<HoaDon, Integer, Object, Boolea
         }
         return data;
     }
-    
+
     public HoaDon findDataByCMND(String CMND) {
-        ResultSet rs = Connection_DB.executeQuery("{Call find_HoaDonBy_CMND(?)}",CMND);
+        ResultSet rs = Connection_DB.executeQuery("{Call find_HoaDonBy_CMND(?)}", CMND);
         try {
             while (rs.next()) {
                 HoaDon hd = new HoaDon();
@@ -128,6 +129,7 @@ public class IDAO_HoaDon implements IDAO_Manager<HoaDon, Integer, Object, Boolea
         }
         return null;
     }
+
     @Override
     public List<HoaDon> findDataByName(Object name) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -140,24 +142,19 @@ public class IDAO_HoaDon implements IDAO_Manager<HoaDon, Integer, Object, Boolea
 
     @Override
     public void insertData(HoaDon hd) {
-<<<<<<< HEAD
-        Connection_DB.executeUpdate("{Call insert_HoaDon(?,?,?,?,?,?,?,?,?,?)}", hd.getMaNhanVien(),hd.getMaKhachHang(),hd.getMaPhong(),hd.getNgayDen(),hd.getNgayDi(),hd.getDatCoc(),
-                hd.getMaKhuyenMai(),hd.getTongTien(),hd.getGhiChu(),hd.getTrangThai());
-=======
-        Connection_DB.executeUpdate("{Call insert_HoaDon(?,?,?,?,?,?,?,?,?,?,?)}", hd.getMaNhanVien(),hd.getMaKhachHang(),hd.getMaPhong(),hd.getNgayDen(),hd.getNgayDi(),hd.getDatCoc(),
-                hd.getMaKhuyenMai(),hd.getTongTien(),hd.getGhiChu(),hd.isTrangThai(),hd.getSoLuot());
->>>>>>> 720fdf34d7a44ae981af4c3ab85ed0c74fa30160
+        Connection_DB.executeUpdate("{Call insert_HoaDon(?,?,?,?,?,?,?,?,?,?,?)}", hd.getMaNhanVien(), hd.getMaKhachHang(), hd.getMaPhong(), hd.getNgayDen(), hd.getNgayDi(), hd.getDatCoc(),
+                hd.getMaKhuyenMai(), hd.getTongTien(), hd.getGhiChu(), hd.getTrangThai(), hd.getSoLuot());
     }
 
     @Override
     public void updateData(HoaDon hd) {
-        Connection_DB.executeUpdate("{Call update_HoaDon(?,?,?,?,?,?,?,?,?,?,?)}", hd.getMaHoaDon(),hd.getMaNhanVien(),hd.getMaKhachHang(),hd.getMaPhong(),hd.getNgayDen(),hd.getNgayDi(),hd.getDatCoc(),
-                hd.getMaKhuyenMai(),hd.getTongTien(),hd.getGhiChu(),hd.getTrangThai());
+        Connection_DB.executeUpdate("{Call update_HoaDon(?,?,?,?,?,?,?,?,?,?,?)}", hd.getMaHoaDon(), hd.getMaNhanVien(), hd.getMaKhachHang(), hd.getMaPhong(), hd.getNgayDen(), hd.getNgayDi(), hd.getDatCoc(),
+                hd.getMaKhuyenMai(), hd.getTongTien(), hd.getGhiChu(), hd.getTrangThai());
     }
 
     @Override
     public void deleteData(Integer id) {
         Connection_DB.executeUpdate("{Call delete_HoaDon(?)}", id);
     }
-    
+
 }
