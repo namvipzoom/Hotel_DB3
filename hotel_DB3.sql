@@ -385,6 +385,30 @@ BEGIN
 END
 go
 
+create proc find_loaiPhong_trangThai
+	@loaiPhong int,
+	@trangThai bit
+as
+begin
+	select p.*, dm.tenDanhMuc  from Phong p
+	join DanhMuc dm on p.loaiPhong = dm.maDanhMuc
+	where p.loaiPhong = @loaiPhong and p.trangThai = @trangThai
+end
+go
+
+
+create proc find_PhongByDanhMuc
+@loaiPhong int
+as
+begin
+	select p.*, dm.tenDanhMuc  from Phong p
+	join DanhMuc dm on p.loaiPhong = dm.maDanhMuc
+	where p.loaiPhong = @loaiPhong
+end
+go
+
+
+
 
 
 -- THỦ TỤC BẢNG DỊCH VỤ
@@ -637,7 +661,7 @@ END
 go
 
 
---THỦ TỤC BẢNG THIẾT BỊ
+--THỦ TỤC BẢNG PHIẾU THIẾT BỊ
 Create proc add_PhieuThietBi
 	@maDanhMuc int,--Mã phòng
 	@maPhong int, -- Mã phòng
@@ -747,7 +771,7 @@ BEGIN
 END
 go
 
- --Thêm Danh Mục Phòng
+  --Thêm Danh Mục Phòng
 exec add_DanhMuc 'Standar Single Bed Room',1000000,'',1
 go
 exec add_DanhMuc 'Standar Twin Bed Room',1500000,'',1	
@@ -844,11 +868,5 @@ exec add_DichVu'Dịch vụ phòng 24/24',0,1
 go
 exec add_DichVu'Giặt ủi',0,1
 go
-
-create proc login 
-@maNhanVien Varchar (5),
-@dienThoai Varchar (20)
-as
-select * from NhanVien where maNhanVien=@maNhanVien and dienThoai=@dienThoai
 
 

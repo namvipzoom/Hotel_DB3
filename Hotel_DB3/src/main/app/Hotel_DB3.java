@@ -19,6 +19,9 @@ public class Hotel_DB3 extends javax.swing.JFrame {
     public Hotel_DB3() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        QL_DatPhong datPhong = new QL_DatPhong();
+        this.dsk_Main.add(datPhong);
+        datPhong.setVisible(true);
     }
 
     /**
@@ -54,7 +57,7 @@ public class Hotel_DB3 extends javax.swing.JFrame {
         dsk_Main.setLayout(dsk_MainLayout);
         dsk_MainLayout.setHorizontalGroup(
             dsk_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGap(0, 1017, Short.MAX_VALUE)
         );
         dsk_MainLayout.setVerticalGroup(
             dsk_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,6 +180,7 @@ public class Hotel_DB3 extends javax.swing.JFrame {
         });
         menu_QuanLy.add(jMenuItem2);
 
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/list_20px.png"))); // NOI18N
         jMenuItem3.setText("Phiếu Dịch Vụ");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

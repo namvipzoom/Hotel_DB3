@@ -280,6 +280,7 @@ public class QL_DichVu extends javax.swing.JInternalFrame {
         }else{
             JOptionPane.showMessageDialog(this, tb, "Thông Báo",JOptionPane.WARNING_MESSAGE);
         }
+
         
     }//GEN-LAST:event_btn_SuaActionPerformed
 
