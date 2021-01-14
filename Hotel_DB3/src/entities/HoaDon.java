@@ -23,6 +23,7 @@ public class HoaDon {
     private int maKhuyenMai;
     private float tongTien;
     private String ghiChu;
+<<<<<<< HEAD
     private Boolean trangThai;
     private String tenNhanVien;
     private String tenPhong;
@@ -31,6 +32,15 @@ public class HoaDon {
     }
 
     public HoaDon(int maHoaDon, String maNhanVien, int maKhachHang, int maPhong, String ngayDen, String ngayDi, float datCoc, int maKhuyenMai, float tongTien, String ghiChu, Boolean trangThai, String tenNhanVien, String tenPhong) {
+=======
+    private boolean trangThai;
+    private int soLuot;
+    
+    public HoaDon() {
+    }
+
+    public HoaDon(int maHoaDon, String maNhanVien, int maKhachHang, int maPhong, String ngayDen, String ngayDi, float datCoc, int maKhuyenMai, float tongTien, String ghiChu, boolean trangThai, int soLuot) {
+>>>>>>> 720fdf34d7a44ae981af4c3ab85ed0c74fa30160
         this.maHoaDon = maHoaDon;
         this.maNhanVien = maNhanVien;
         this.maKhachHang = maKhachHang;
@@ -42,8 +52,12 @@ public class HoaDon {
         this.tongTien = tongTien;
         this.ghiChu = ghiChu;
         this.trangThai = trangThai;
+<<<<<<< HEAD
         this.tenNhanVien = tenNhanVien;
         this.tenPhong = tenPhong;
+=======
+        this.soLuot = soLuot;
+>>>>>>> 720fdf34d7a44ae981af4c3ab85ed0c74fa30160
     }
 
     public int getMaHoaDon() {
@@ -134,6 +148,7 @@ public class HoaDon {
         this.trangThai = trangThai;
     }
 
+<<<<<<< HEAD
     public String getTenNhanVien() {
         return tenNhanVien;
     }
@@ -149,6 +164,24 @@ public class HoaDon {
     public void setTenPhong(String tenPhong) {
         this.tenPhong = tenPhong;
     }
+=======
+    public int getSoLuot() {
+        return soLuot;
+    }
+
+    public void setSoLuot(int soLuot) {
+        this.soLuot = soLuot;
+    }
+
+    @Override
+    public String toString() {
+        return "HoaDon{" + "maHoaDon=" + maHoaDon + ", maNhanVien=" + maNhanVien + ", maKhachHang=" + maKhachHang + ", maPhong=" + maPhong + ", ngayDen=" + ngayDen + ", ngayDi=" + ngayDi + ", datCoc=" + datCoc + ", maKhuyenMai=" + maKhuyenMai + ", tongTien=" + tongTien + ", ghiChu=" + ghiChu + ", trangThai=" + trangThai + ", soLuot=" + soLuot + '}';
+    }
+
+    
+
+   
+>>>>>>> 720fdf34d7a44ae981af4c3ab85ed0c74fa30160
 
 
     

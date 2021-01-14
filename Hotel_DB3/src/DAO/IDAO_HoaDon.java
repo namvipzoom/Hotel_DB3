@@ -140,8 +140,13 @@ public class IDAO_HoaDon implements IDAO_Manager<HoaDon, Integer, Object, Boolea
 
     @Override
     public void insertData(HoaDon hd) {
+<<<<<<< HEAD
         Connection_DB.executeUpdate("{Call insert_HoaDon(?,?,?,?,?,?,?,?,?,?)}", hd.getMaNhanVien(),hd.getMaKhachHang(),hd.getMaPhong(),hd.getNgayDen(),hd.getNgayDi(),hd.getDatCoc(),
                 hd.getMaKhuyenMai(),hd.getTongTien(),hd.getGhiChu(),hd.getTrangThai());
+=======
+        Connection_DB.executeUpdate("{Call insert_HoaDon(?,?,?,?,?,?,?,?,?,?,?)}", hd.getMaNhanVien(),hd.getMaKhachHang(),hd.getMaPhong(),hd.getNgayDen(),hd.getNgayDi(),hd.getDatCoc(),
+                hd.getMaKhuyenMai(),hd.getTongTien(),hd.getGhiChu(),hd.isTrangThai(),hd.getSoLuot());
+>>>>>>> 720fdf34d7a44ae981af4c3ab85ed0c74fa30160
     }
 
     @Override
