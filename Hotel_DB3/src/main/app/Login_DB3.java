@@ -154,7 +154,7 @@ public class Login_DB3 extends javax.swing.JFrame {
             if (username.equalsIgnoreCase(nv.getMaNhanVien()) && password.equalsIgnoreCase(nv.getDienThoai())) {
                 NhanVien nv1 = new NhanVien();
                  String tenNhanVien = nv.getTenNhanVien();
-                 nv1.setTenNhanVien(tenNhanVien); 
+                 nv1.setTenNhanVien("Xin chào "+tenNhanVien); 
                 Hotel_DB3 hotel = new Hotel_DB3(nv1);
                 this.dispose();
                 hotel.setVisible(true);

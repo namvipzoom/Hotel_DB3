@@ -66,6 +66,9 @@ public class Hotel_DB3 extends javax.swing.JFrame {
 
         dsk_Main.setBackground(new java.awt.Color(153, 255, 153));
 
+        btnDangXuat.setBackground(new java.awt.Color(255, 153, 153));
+        btnDangXuat.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDangXuat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnDangXuat.setText("Đăng xuất");
         btnDangXuat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -73,16 +76,18 @@ public class Hotel_DB3 extends javax.swing.JFrame {
             }
         });
 
+        txtTenNhanVien.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+
         javax.swing.GroupLayout dsk_MainLayout = new javax.swing.GroupLayout(dsk_Main);
         dsk_Main.setLayout(dsk_MainLayout);
         dsk_MainLayout.setHorizontalGroup(
             dsk_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dsk_MainLayout.createSequentialGroup()
-                .addContainerGap(786, Short.MAX_VALUE)
-                .addComponent(txtTenNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addContainerGap(711, Short.MAX_VALUE)
+                .addComponent(txtTenNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
         );
         dsk_MainLayout.setVerticalGroup(
             dsk_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
