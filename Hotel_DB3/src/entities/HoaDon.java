@@ -24,11 +24,12 @@ public class HoaDon {
     private float tongTien;
     private String ghiChu;
     private boolean trangThai;
-
+    private int soLuot;
+    
     public HoaDon() {
     }
 
-    public HoaDon(int maHoaDon, String maNhanVien, int maKhachHang, int maPhong, String ngayDen, String ngayDi, float datCoc, int maKhuyenMai, float tongTien, String ghiChu, boolean trangThai) {
+    public HoaDon(int maHoaDon, String maNhanVien, int maKhachHang, int maPhong, String ngayDen, String ngayDi, float datCoc, int maKhuyenMai, float tongTien, String ghiChu, boolean trangThai, int soLuot) {
         this.maHoaDon = maHoaDon;
         this.maNhanVien = maNhanVien;
         this.maKhachHang = maKhachHang;
@@ -40,6 +41,7 @@ public class HoaDon {
         this.tongTien = tongTien;
         this.ghiChu = ghiChu;
         this.trangThai = trangThai;
+        this.soLuot = soLuot;
     }
 
     public int getMaHoaDon() {
@@ -129,6 +131,21 @@ public class HoaDon {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
+
+    public int getSoLuot() {
+        return soLuot;
+    }
+
+    public void setSoLuot(int soLuot) {
+        this.soLuot = soLuot;
+    }
+
+    @Override
+    public String toString() {
+        return "HoaDon{" + "maHoaDon=" + maHoaDon + ", maNhanVien=" + maNhanVien + ", maKhachHang=" + maKhachHang + ", maPhong=" + maPhong + ", ngayDen=" + ngayDen + ", ngayDi=" + ngayDi + ", datCoc=" + datCoc + ", maKhuyenMai=" + maKhuyenMai + ", tongTien=" + tongTien + ", ghiChu=" + ghiChu + ", trangThai=" + trangThai + ", soLuot=" + soLuot + '}';
+    }
+
+    
 
    
 

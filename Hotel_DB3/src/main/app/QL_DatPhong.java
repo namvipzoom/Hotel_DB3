@@ -137,7 +137,7 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
         btn_ThemThietBi = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         btn_Clear = new javax.swing.JToggleButton();
-        jLabel30 = new javax.swing.JLabel();
+        btn_DatPhong = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tbl_DichVu = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
@@ -472,7 +472,7 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
             add_newPhieuThietBiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, add_newPhieuThietBiLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 332, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -504,7 +504,7 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Khuyến mại: ");
 
-        jLabel3.setText("Mã nhân viên:");
+        jLabel3.setText("Nhân viên:");
 
         jLabel4.setText("Mã khách hàng:");
 
@@ -582,6 +582,23 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
                 txt_MaPhongMouseClicked(evt);
             }
         });
+        txt_MaPhong.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                txt_MaPhongInputMethodTextChanged(evt);
+            }
+        });
+        txt_MaPhong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_MaPhongActionPerformed(evt);
+            }
+        });
+        txt_MaPhong.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_MaPhongKeyPressed(evt);
+            }
+        });
 
         jLabel16.setText("Ngày đến:");
 
@@ -620,13 +637,22 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel30.setBackground(new java.awt.Color(0, 255, 51));
-        jLabel30.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel30.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add_25px.png"))); // NOI18N
-        jLabel30.setText("ĐẶT PHÒNG");
-        jLabel30.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel30.setOpaque(true);
+        btn_DatPhong.setBackground(new java.awt.Color(0, 255, 51));
+        btn_DatPhong.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btn_DatPhong.setForeground(new java.awt.Color(0, 0, 102));
+        btn_DatPhong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add_25px.png"))); // NOI18N
+        btn_DatPhong.setText("ĐẶT PHÒNG");
+        btn_DatPhong.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_DatPhong.setOpaque(true);
+        btn_DatPhong.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                btn_DatPhongAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -695,7 +721,7 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
                                             .addComponent(txt_MaPhong, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
-                                        .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addComponent(btn_DatPhong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(btn_ThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -766,7 +792,7 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
                         .addComponent(check_ChuaThanhToan)
                         .addComponent(check_ThanhToan)))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                .addComponent(btn_DatPhong, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
                 .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_ThemDichVu, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1058,7 +1084,10 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void defaultView() {
-        date_NgayDen.setMinSelectableDate(new Date());
+        Date today = new Date();
+        date_NgayDen.setDate(today);
+        date_NgayDi.setDate(today);
+        date_NgayDen.setMinSelectableDate(today);
         iDAO_DanhMuc = new IDAO_DanhMuc();
         iDAO_KhuyenMai = new IDAO_KhuyenMai();
         iDAO_NhanVien = new IDAO_NhanVien();
@@ -1084,6 +1113,7 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
         tbl_KhachHang.getSelectionModel().addListSelectionListener((ListSelectionEvent lse) -> {
             setMaKhachHang();
         });
+
     }
 
     private void loadDanhMuc() {
@@ -1152,6 +1182,7 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
             int id = (int) tbl_Phong.getValueAt(selectedPhong, 0);
             Phong p = iDAO_Phong.findDataById(id);
             txt_MaPhong.setText(p.getMaPhong() + "");
+//            btn_ThemThietBi.setEnabled(true);
         }
     }
 
@@ -1182,6 +1213,7 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
         }
 
         hoaDon.setMaKhachHang(Integer.parseInt(txt_MaKhachHang.getText()));
+        System.out.println(txt_MaKhachHang.getText());
         hoaDon.setDatCoc(Float.parseFloat(txt_DatCoc.getText()));
         hoaDon.setGhiChu(txt_GhiChu.getText());
         hoaDon.setTrangThai(check_ThanhToan.isSelected());
@@ -1193,7 +1225,6 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
         hoaDon.setMaKhuyenMai(khuyenMai.getMaKhuyenMai());
         hoaDon.setMaPhong(Integer.parseInt(txt_MaPhong.getText()));
 
-        System.out.println(nhanVien.getMaNhanVien());
 
         // Tổng tiền
         hoaDon.setTongTien(0);
@@ -1298,8 +1329,23 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_ThoatActionPerformed
 
     private void btn_ThemThietBiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemThietBiActionPerformed
-        add_newPhieuThietBi.setVisible(true);
-        add_newPhieuThietBi.setSize(420, 420);
+//        try {
+//            add_newPhieuThietBi.setVisible(true);
+//            add_newPhieuThietBi.setSize(420, 420);
+//            ThietBi bi = (ThietBi) list_ThietBi.getSelectedItem();
+//            txt_GiaTriThietBi.setText(iDAO_ThietBi.findDataById(bi.getMaThietBi()).getGiaThietBi() + "");
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "Bạn phải chọn phòng, mã khách hàng và phải chưa thanh toán!");
+//        }
+        if (txt_MaPhong.getText().equals("") && txt_MaKhach.getText().equals("") && check_ChuaThanhToan.isSelected()) {
+            JOptionPane.showMessageDialog(this, "Bạn phải chọn phòng, mã khách hàng và phải chưa thanh toán!");
+        } else {
+            add_newPhieuThietBi.setVisible(true);
+            add_newPhieuThietBi.setSize(420, 420);
+            ThietBi bi = (ThietBi) list_ThietBi.getSelectedItem();
+            txt_GiaTriThietBi.setText(iDAO_ThietBi.findDataById(bi.getMaThietBi()).getGiaThietBi() + "");
+        }
+
 
     }//GEN-LAST:event_btn_ThemThietBiActionPerformed
 
@@ -1323,7 +1369,8 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
         phieuThietBi.setTrangThai(false);
         if (iDAO_PhieuThietBi.check_TonTai(bi.getMaThietBi(), Integer.parseInt(txt_MaPhong.getText())) == true) {
             iDAO_PhieuThietBi.insertData(phieuThietBi);
-            Clear();
+            txt_SoLuot.setText("1");
+            txt_GiaTriThietBi.setText(iDAO_ThietBi.findDataById(bi.getMaThietBi()).getGiaThietBi() + "");
             loadPhieuThietBi();
         } else {
             JOptionPane.showMessageDialog(this, "Phòng này đã có " + txt_SoLuong.getText() + " thiết bị là " + bi.getTenThietBi());
@@ -1341,14 +1388,69 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
 
     private void txt_SoLuongKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_SoLuongKeyPressed
         ThietBi bi = (ThietBi) list_ThietBi.getSelectedItem();
-        float gia = iDAO_ThietBi.findDataById(bi.getMaThietBi()).getGiaThietBi();
-        if (txt_SoLuong.getText() != null) {
-            float tongTien = gia * (Integer.parseInt(txt_SoLuong.getText()));
-            txt_GiaTriThietBi.setText(tongTien + "");
-        } else {
-
+        try {
+            float gia = iDAO_ThietBi.findDataById(bi.getMaThietBi()).getGiaThietBi();
+            if (!txt_SoLuong.getText().equals("")) {
+                float tongTien = gia * (Integer.parseInt(txt_SoLuong.getText()));
+                txt_GiaTriThietBi.setText(tongTien + "");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Bạn phải nhập số!");
         }
     }//GEN-LAST:event_txt_SoLuongKeyPressed
+
+    private void txt_MaPhongKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_MaPhongKeyPressed
+
+    }//GEN-LAST:event_txt_MaPhongKeyPressed
+
+    private void txt_MaPhongInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txt_MaPhongInputMethodTextChanged
+        if (txt_MaPhong.getText() != null) {
+
+        }
+    }//GEN-LAST:event_txt_MaPhongInputMethodTextChanged
+
+    private void txt_MaPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_MaPhongActionPerformed
+
+    }//GEN-LAST:event_txt_MaPhongActionPerformed
+
+    private void btn_DatPhongAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_btn_DatPhongAncestorAdded
+        HoaDon hoaDon = new HoaDon();
+        //Ngày tháng
+        int soNgay = 0;
+        String ngayDen = null;
+        String ngayDi = null;
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            ngayDen = dateFormat.format(date_NgayDen.getDate());
+            ngayDi = dateFormat.format(date_NgayDi.getDate());
+            Date dateNgayDi = dateFormat.parse(ngayDi);
+            Date dateNgayDen = dateFormat.parse(ngayDen);
+            long numberDate = dateNgayDi.getTime() - dateNgayDen.getTime();
+            soNgay = (int) ((numberDate / (1000 * 60 * 60 * 24)) + 1);
+        } catch (ParseException ex) {
+            Logger.getLogger(QL_DatPhong.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+         NhanVien nhanVien = (NhanVien) list_MaNhanVien.getSelectedItem();
+        hoaDon.setMaNhanVien(nhanVien.getMaNhanVien());
+        hoaDon.setMaKhachHang(Integer.parseInt(txt_MaKhachHang.getText()));
+        hoaDon.setMaPhong(Integer.parseInt(txt_MaPhong.getText()));
+        hoaDon.setNgayDen(ngayDen);
+        hoaDon.setNgayDi(ngayDi);
+        hoaDon.setDatCoc(Float.parseFloat(txt_DatCoc.getText()));
+        KhuyenMai khuyenMai = (KhuyenMai) list_KhuyenMai.getSelectedItem();
+        hoaDon.setMaKhuyenMai(khuyenMai.getMaKhuyenMai());
+        hoaDon.setGhiChu(txt_GhiChu.getText());
+        hoaDon.setTrangThai(check_ChuaThanhToan.isSelected());
+        hoaDon.setSoLuot(0);
+        hoaDon.setTongTien(0);
+        
+        System.out.println(hoaDon.toString());
+
+        iDAO_HoaDon.insertData(hoaDon);
+        btn_DatPhong.setEnabled(false);
+//        Clear();
+    }//GEN-LAST:event_btn_DatPhongAncestorAdded
 
     private void locPhong() {
         DefaultComboBoxModel boxModel = (DefaultComboBoxModel) list_Status.getModel();
@@ -1387,6 +1489,7 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
     private javax.swing.JDialog add_newPhieuThietBi;
     private javax.swing.JToggleButton btn_CapNhat;
     private javax.swing.JToggleButton btn_Clear;
+    private javax.swing.JLabel btn_DatPhong;
     private javax.swing.JToggleButton btn_HuyPhong;
     private javax.swing.JToggleButton btn_TaoKhachHangMoi;
     private javax.swing.JToggleButton btn_ThanhToan;
@@ -1427,7 +1530,6 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
