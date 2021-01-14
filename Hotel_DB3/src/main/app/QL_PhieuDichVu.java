@@ -109,13 +109,12 @@ public class QL_PhieuDichVu extends javax.swing.JInternalFrame {
     }
     
     public void detail_DichVu() {
-        int SelectedRow = tbl_DichVu.getSelectedRow();
-        if (SelectedRow >= 0) {
-            int id = (int) tbl_DichVu.getValueAt(SelectedRow, 0);
+        int detail = tbl_DichVu.getSelectedRow();
+        if (detail >= 0) {
+            int id = (int) tbl_DichVu.getValueAt(detail, 0);
             DichVu dv = dao_dv.findDataById(id);
             txt_maDichVu.setText(dv.getMaDichVu()+"");
-            txt_maPhong.setText("");
-            txt_ghiChu.setText("");
+           
         }
     }
     
