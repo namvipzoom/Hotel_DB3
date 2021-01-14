@@ -5,6 +5,8 @@
  */
 package entities;
 
+import java.util.Date;
+
 /**
  *
  * @author DUY
@@ -21,12 +23,12 @@ public class HoaDon {
     private int maKhuyenMai;
     private float tongTien;
     private String ghiChu;
-    private Boolean trangThai;
+    private boolean trangThai;
 
     public HoaDon() {
     }
 
-    public HoaDon(int maHoaDon, String maNhanVien, int maKhachHang, int maPhong, String ngayDen, String ngayDi, float datCoc, int maKhuyenMai, float tongTien, String ghiChu, Boolean trangThai) {
+    public HoaDon(int maHoaDon, String maNhanVien, int maKhachHang, int maPhong, String ngayDen, String ngayDi, float datCoc, int maKhuyenMai, float tongTien, String ghiChu, boolean trangThai) {
         this.maHoaDon = maHoaDon;
         this.maNhanVien = maNhanVien;
         this.maKhachHang = maKhachHang;
@@ -120,13 +122,18 @@ public class HoaDon {
         this.ghiChu = ghiChu;
     }
 
-    public Boolean getTrangThai() {
+    public boolean isTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(Boolean trangThai) {
+    public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
+
+   
+
+    
+
     
     
 

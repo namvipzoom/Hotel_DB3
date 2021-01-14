@@ -86,7 +86,25 @@ public class IDAO_Phong implements IDAO_Manager<Phong, Integer, String, Boolean>
 
     @Override
     public List<Phong> findDataByStatus(Boolean status) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Phong> data = new ArrayList<>();
+        ResultSet rs = Connection_DB.executeQuery("{Call findPhong_trangThai(?)}", status);
+        try {
+            while (rs.next()) {
+                Phong p = new Phong();
+                p.setMaPhong(rs.getInt("maPhong"));
+                p.setTenPhong(rs.getString("tenPhong"));
+                p.setLoaiPhong(rs.getInt("loaiPhong"));
+                p.setSoGiuong(rs.getInt("soGiuong"));
+                p.setGhiChu(rs.getString("ghiChu"));
+                p.setTrangThai(rs.getBoolean("trangThai"));
+                p.setTenDanhMuc(rs.getString("tenDanhMuc"));
+                data.add(p);
+            }
+            return data;
+        } catch (SQLException ex) {
+            Logger.getLogger(IDAO_Phong.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
@@ -104,4 +122,47 @@ public class IDAO_Phong implements IDAO_Manager<Phong, Integer, String, Boolean>
         Connection_DB.executeUpdate("{Call delete_Phong(?)}", id);
     }
 
+    public List<Phong> findDataByMa_TrangThai(Integer id, Boolean status) {
+        List<Phong> data = new ArrayList<>();
+        ResultSet rs = Connection_DB.executeQuery("{Call find_loaiPhong_trangThai(?,?)}", id, status);
+        try {
+            while (rs.next()) {
+                Phong p = new Phong();
+                p.setMaPhong(rs.getInt("maPhong"));
+                p.setTenPhong(rs.getString("tenPhong"));
+                p.setLoaiPhong(rs.getInt("loaiPhong"));
+                p.setSoGiuong(rs.getInt("soGiuong"));
+                p.setGhiChu(rs.getString("ghiChu"));
+                p.setTrangThai(rs.getBoolean("trangThai"));
+                p.setTenDanhMuc(rs.getString("tenDanhMuc"));
+                data.add(p);
+            }
+            return data;
+        } catch (SQLException ex) {
+            Logger.getLogger(IDAO_DanhMuc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public List<Phong> findDataByMaDanhMuc(Integer id) {
+        List<Phong> data = new ArrayList<>();
+        ResultSet rs = Connection_DB.executeQuery("{Call find_PhongByDanhMuc(?)}", id);
+        try {
+            while (rs.next()) {
+                Phong p = new Phong();
+                p.setMaPhong(rs.getInt("maPhong"));
+                p.setTenPhong(rs.getString("tenPhong"));
+                p.setLoaiPhong(rs.getInt("loaiPhong"));
+                p.setSoGiuong(rs.getInt("soGiuong"));
+                p.setGhiChu(rs.getString("ghiChu"));
+                p.setTrangThai(rs.getBoolean("trangThai"));
+                p.setTenDanhMuc(rs.getString("tenDanhMuc"));
+                data.add(p);
+            }
+            return data;
+        } catch (SQLException ex) {
+            Logger.getLogger(IDAO_DanhMuc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

@@ -15,7 +15,6 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import Connect.Check_Validate;
 
 /**
  *
@@ -26,7 +25,6 @@ public class QL_PhieuThietBi extends javax.swing.JInternalFrame {
     private final IDAO_DanhMuc iDAO_DanhMuc;
     private final IDAO_ThietBi iDAO_ThietBi;
     private final IDAO_PhieuThietBi iDAO_PhieuThietBi;
-    private Check_Validate check;
 
     public QL_PhieuThietBi() {
         initComponents();
@@ -355,32 +353,21 @@ public class QL_PhieuThietBi extends javax.swing.JInternalFrame {
 
     private void btn_ThemMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemMoiActionPerformed
         PhieuThietBi phieuThietBi = new PhieuThietBi();
-        String tb = "";
         DanhMuc dm = (DanhMuc) list_DanhMuc.getSelectedItem();
-
-        if (!check.isNumeric(txt_SoLuong.getText())) {
-            tb += "Số lượng phải là số";
-        }
-        if (check.isNumeric(txt_SoLuong.getText())) {
-            phieuThietBi.setMaDanhMuc(dm.getMaDanhMuc());
-            ThietBi bi = (ThietBi) list_ThietBi.getSelectedItem();
-            phieuThietBi.setMaThietBi(bi.getMaThietBi());
-            phieuThietBi.setPhong(Integer.parseInt(txt_MaPhong.getText()));
-            phieuThietBi.setGhiChu(txt_GhiChu.getText());
-            phieuThietBi.setSoLuong(Integer.parseInt(txt_SoLuong.getText()));
-            phieuThietBi.setTrangThai(check_Free.isSelected());
+        phieuThietBi.setMaDanhMuc(dm.getMaDanhMuc());
+        ThietBi bi = (ThietBi) list_ThietBi.getSelectedItem();
+        phieuThietBi.setMaThietBi(bi.getMaThietBi());
+        phieuThietBi.setPhong(Integer.parseInt(txt_MaPhong.getText()));
+        phieuThietBi.setGhiChu(txt_GhiChu.getText());
+        phieuThietBi.setSoLuong(Integer.parseInt(txt_SoLuong.getText()));
+        phieuThietBi.setTrangThai(check_Free.isSelected());
         if (iDAO_PhieuThietBi.check_TonTai(bi.getMaThietBi(), Integer.parseInt(txt_MaPhong.getText())) == true) {
             iDAO_PhieuThietBi.insertData(phieuThietBi);
             Clear();
             loadPhieuThietBi();
         } else {
-            JOptionPane.showMessageDialog(this, "Đã tồn tại thiết bị này!");
+            JOptionPane.showMessageDialog(this, "Phòng này đã có " + txt_SoLuong.getText() + " thiết bị là " + bi.getTenThietBi());
         }
-        } else {
-            JOptionPane.showMessageDialog(this, tb, "Thông báo", JOptionPane.WARNING_MESSAGE);
-        }
-
-        
 
     }//GEN-LAST:event_btn_ThemMoiActionPerformed
 

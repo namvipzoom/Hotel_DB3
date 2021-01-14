@@ -23,7 +23,7 @@ public class IDAO_HoaDon implements IDAO_Manager<HoaDon, Integer, Object, Boolea
     @Override
     public List<HoaDon> getAllData() {
         List<HoaDon> data = new ArrayList<>();
-        ResultSet rs = Connection_DB.executeQuery("{Call getAll_HoaDon}");
+        ResultSet rs = Connection_DB.executeQuery("{Call getAll_HoaDon()}");
         try {
             while (rs.next()) {
                 HoaDon hd = new HoaDon();
@@ -65,7 +65,6 @@ public class IDAO_HoaDon implements IDAO_Manager<HoaDon, Integer, Object, Boolea
                 hd.setGhiChu(rs.getString("ghiChu"));
                 hd.setTrangThai(rs.getBoolean("trangThai"));
                 return hd;
-
             }
         } catch (SQLException ex) {
             Logger.getLogger(IDAO_HoaDon.class.getName()).log(Level.SEVERE, null, ex);
@@ -85,14 +84,14 @@ public class IDAO_HoaDon implements IDAO_Manager<HoaDon, Integer, Object, Boolea
 
     @Override
     public void insertData(HoaDon hd) {
-        Connection_DB.executeUpdate("{Call add_HoaDon(?,?,?,?,?,?,?,?,?,?)}", hd.getMaNhanVien(),hd.getMaKhachHang(),hd.getMaPhong(),hd.getNgayDen(),hd.getNgayDi(),hd.getDatCoc(),
-                hd.getMaKhuyenMai(),hd.getTongTien(),hd.getGhiChu(),hd.getTrangThai());
+        Connection_DB.executeUpdate("{Call insert_HoaDon(?,?,?,?,?,?,?,?,?,?)}", hd.getMaNhanVien(),hd.getMaKhachHang(),hd.getMaPhong(),hd.getNgayDen(),hd.getNgayDi(),hd.getDatCoc(),
+                hd.getMaKhuyenMai(),hd.getTongTien(),hd.getGhiChu(),hd.isTrangThai());
     }
 
     @Override
     public void updateData(HoaDon hd) {
         Connection_DB.executeUpdate("{Call update_HoaDon(?,?,?,?,?,?,?,?,?,?,?)}", hd.getMaHoaDon(),hd.getMaNhanVien(),hd.getMaKhachHang(),hd.getMaPhong(),hd.getNgayDen(),hd.getNgayDi(),hd.getDatCoc(),
-                hd.getMaKhuyenMai(),hd.getTongTien(),hd.getGhiChu(),hd.getTrangThai());
+                hd.getMaKhuyenMai(),hd.getTongTien(),hd.getGhiChu(),hd.isTrangThai());
     }
 
     @Override
