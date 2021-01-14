@@ -16,13 +16,16 @@ import javax.swing.JOptionPane;
  * @author Namvipzoom
  */
 public class Login_DB3 extends javax.swing.JFrame {
- private final IDAO_NhanVien iDAO_NhanVien;
+
+    private final IDAO_NhanVien iDAO_NhanVien;
+
     /**
      * Creates new form Login_DB3
      */
     public Login_DB3() {
         initComponents();
-         iDAO_NhanVien = new IDAO_NhanVien();
+        iDAO_NhanVien = new IDAO_NhanVien();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -119,7 +122,7 @@ public class Login_DB3 extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(196, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -141,18 +144,18 @@ public class Login_DB3 extends javax.swing.JFrame {
         String username = txtTaiKhoan.getText();
         String password = String.valueOf(txtMatKhau.getPassword());
         List<NhanVien> data = iDAO_NhanVien.getAllData();
-        for (NhanVien nv : data) {
-          if (username.equalsIgnoreCase(nv.getMaNhanVien())  && password.equalsIgnoreCase(nv.getDienThoai())) {
-            hotel.setVisible(true);
-        hotel.pack();
-        hotel.setLocationRelativeTo(null);
-        hotel.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        hotel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(rootPane,"Tài khoản hoặc mật khẩu của bạn không chính xác\n Vui lòng thử lại","Lỗi",JOptionPane.WARNING_MESSAGE);
-        }
-        }
+        data.forEach((nv) -> {
+            if (username.equalsIgnoreCase(nv.getMaNhanVien()) && password.equalsIgnoreCase(nv.getDienThoai())) {
+                hotel.setVisible(true);
+                hotel.pack();
+                hotel.setLocationRelativeTo(null);
+                hotel.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                hotel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Tài khoản hoặc mật khẩu của bạn không chính xác\n Vui lòng thử lại", "Lỗi", JOptionPane.WARNING_MESSAGE);
+            }
+        });
         
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
