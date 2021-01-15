@@ -1251,8 +1251,7 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, tb, "Thông Báo",JOptionPane.WARNING_MESSAGE);
         }
 
-<<<<<<< HEAD
-=======
+
         hoaDon.setMaKhachHang(Integer.parseInt(txt_MaKhachHang.getText()));
         System.out.println(txt_MaKhachHang.getText());
         hoaDon.setDatCoc(Float.parseFloat(txt_DatCoc.getText()));
@@ -1272,7 +1271,6 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
 
         iDAO_HoaDon.insertData(hoaDon);
         Clear();
->>>>>>> 720fdf34d7a44ae981af4c3ab85ed0c74fa30160
     }//GEN-LAST:event_btn_ThanhToanActionPerformed
 
     private void Clear() {

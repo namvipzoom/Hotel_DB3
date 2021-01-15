@@ -169,11 +169,31 @@ public class QL_HoaDon extends javax.swing.JInternalFrame {
     }
     private void list_TrangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_list_TrangThaiActionPerformed
         // TODO add your handling code here:
-        
-
 
     }//GEN-LAST:event_list_TrangThaiActionPerformed
-
+    public void locStatus() {
+        DefaultComboBoxModel cbb = (DefaultComboBoxModel) list_TrangThai.getModel();
+        DefaultTableModel model = (DefaultTableModel) tbl_HoaDon.getModel();
+        if (cbb.getElementAt(list_TrangThai.getSelectedIndex()).equals("Tất cả")) {
+            List<HoaDon> listDichVu = iDAO_HoaDon.getAllData();
+            model.setRowCount(0);
+            int i = 1;
+            for (HoaDon hd : listDichVu) {
+                model.addRow(new Object[]{i, hd.getMaHoaDon(), hd.getTenNhanVien(), hd.getMaKhachHang(), hd.getTenPhong(), hd.getNgayDen(), hd.getNgayDi(), hd.getDatCoc(), hd.getMaKhuyenMai(), hd.getTongTien(), hd.getGhiChu(), hd.getTrangThai() ? "Đã thanh toán" : "Chưa thanh toán"});
+                i++;
+            }
+            tbl_HoaDon.setModel(model);
+        }else if(cbb.getElementAt(list_TrangThai.getSelectedIndex()).equals("Đã thanh toán")){
+            List<HoaDon> listDichVu = iDAO_HoaDon.findDataByStatus(0);
+            model.setRowCount(0);
+            int i = 1;
+            for (HoaDon hd : listDichVu) {
+                model.addRow(new Object[]{i, hd.getMaHoaDon(), hd.getTenNhanVien(), hd.getMaKhachHang(), hd.getTenPhong(), hd.getNgayDen(), hd.getNgayDi(), hd.getDatCoc(), hd.getMaKhuyenMai(), hd.getTongTien(), hd.getGhiChu(), hd.getTrangThai() ? "Đã thanh toán" : "Chưa thanh toán"});
+                i++;
+            }
+            tbl_HoaDon.setModel(model);
+        }
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String CMND = txt_CMND.getText();
