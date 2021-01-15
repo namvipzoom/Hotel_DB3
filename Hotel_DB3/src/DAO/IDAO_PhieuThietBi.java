@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package DAO;
+
 import Connect.Connection_DB;
+import entities.DanhMuc;
 import entities.PhieuThietBi;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author DUY
@@ -59,7 +62,7 @@ public class IDAO_PhieuThietBi implements IDAO_Manager<PhieuThietBi, Integer, In
 
     @Override
     public void insertData(PhieuThietBi t) {
-        Connection_DB.executeUpdate("{CALL add_PhieuThietBi(?,?,?,?,?,?,?)}",t.getMaHoaDon(), t.getMaDanhMuc(), t.getPhong(), t.getMaThietBi(), t.getSoLuong(), t.getGhiChu(), t.isTrangThai());
+        Connection_DB.executeUpdate("{CALL add_PhieuThietBi(?,?,?,?,?,?,?)}", t.getMaHoaDon(), t.getMaDanhMuc(), t.getPhong(), t.getMaThietBi(), t.getSoLuong(), t.getGhiChu(), t.isTrangThai());
     }
 
     @Override
@@ -117,7 +120,7 @@ public class IDAO_PhieuThietBi implements IDAO_Manager<PhieuThietBi, Integer, In
         }
         return null;
     }
-    
+
     public List<PhieuThietBi> listPhieuThietBiById(int id) {
         List<PhieuThietBi> listPhieuThietBi = new ArrayList<>();
         ResultSet resultSet = Connect.Connection_DB.executeQuery("{CALL find_PhieuThietBiByTen(?)}", id);
@@ -151,8 +154,10 @@ public class IDAO_PhieuThietBi implements IDAO_Manager<PhieuThietBi, Integer, In
         } catch (SQLException ex) {
             Logger.getLogger(IDAO_PhieuThietBi.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return true;
     }
+
+    
 
 }

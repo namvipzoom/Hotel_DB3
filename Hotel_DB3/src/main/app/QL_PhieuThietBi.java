@@ -331,7 +331,7 @@ public class QL_PhieuThietBi extends javax.swing.JInternalFrame {
 
     private void btn_ThemMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemMoiActionPerformed
         PhieuThietBi phieuThietBi = new PhieuThietBi();
-        phieuThietBi.setMaHoaDon(1);
+        phieuThietBi.setMaHoaDon(5);
         DanhMuc dm = (DanhMuc) list_DanhMuc.getSelectedItem();
         phieuThietBi.setMaDanhMuc(dm.getMaDanhMuc());
         ThietBi bi = (ThietBi) list_ThietBi.getSelectedItem();
@@ -390,9 +390,11 @@ public class QL_PhieuThietBi extends javax.swing.JInternalFrame {
         if (selectRow >= 0) {
             int maThietBi = (int) tbl_PhieuThietBi.getValueAt(selectRow, 1);
 
-            int soPhong = 0;
+            int maDanhMuc = iDAO_DanhMuc.getMaDanhMuc((String) tbl_PhieuThietBi.getValueAt(selectRow, 0));
 
-            PhieuThietBi p = (PhieuThietBi) iDAO_PhieuThietBi.finDataToDelete(maThietBi, soPhong);
+//            JOptionPane.showMessageDialog(this, maDanhMuc + "-" + maThietBi + tbl_PhieuThietBi.getValueAt(selectRow, 0));
+
+            PhieuThietBi p = (PhieuThietBi) iDAO_PhieuThietBi.finDataToDelete(maThietBi, maDanhMuc);
             txt_SoLuong.setText(p.getSoLuong() + "");
             txt_GhiChu.setText(p.getGhiChu());
 
