@@ -13,12 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author dell
  */
-
-public class IDAO_DanhMuc implements IDAO_Manager<DanhMuc, Integer, String, Boolean>{
+public class IDAO_DanhMuc implements IDAO_Manager<DanhMuc, Integer, String, Boolean> {
 
     @Override
     public List<DanhMuc> getAllData() {
@@ -43,7 +43,7 @@ public class IDAO_DanhMuc implements IDAO_Manager<DanhMuc, Integer, String, Bool
 
     @Override
     public DanhMuc findDataById(Integer id) {
-        ResultSet rs = Connection_DB.executeQuery("{Call find_maDanhMuc(?)}",id);
+        ResultSet rs = Connection_DB.executeQuery("{Call find_maDanhMuc(?)}", id);
         try {
             while (rs.next()) {
                 DanhMuc dm = new DanhMuc();
@@ -57,14 +57,14 @@ public class IDAO_DanhMuc implements IDAO_Manager<DanhMuc, Integer, String, Bool
         } catch (SQLException ex) {
             Logger.getLogger(IDAO_DanhMuc.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return null;
     }
 
     @Override
     public List<DanhMuc> findDataByName(String name) {
-         List<DanhMuc> data = new ArrayList<>();
-        ResultSet rs = Connection_DB.executeQuery("{Call find_tenDanhMuc(?)}",name);
+        List<DanhMuc> data = new ArrayList<>();
+        ResultSet rs = Connection_DB.executeQuery("{Call find_tenDanhMuc(?)}", name);
         try {
             while (rs.next()) {
                 DanhMuc dm = new DanhMuc();
@@ -81,8 +81,8 @@ public class IDAO_DanhMuc implements IDAO_Manager<DanhMuc, Integer, String, Bool
 
         return data;
     }
-    
-    public List<DanhMuc> getAll_statusDanhMuc(){
+
+    public List<DanhMuc> getAll_statusDanhMuc() {
         List<DanhMuc> data = new ArrayList<>();
         ResultSet rs = Connection_DB.executeQuery("{Call getAll_DanhMucHoatDong()}");
         try {
@@ -101,6 +101,7 @@ public class IDAO_DanhMuc implements IDAO_Manager<DanhMuc, Integer, String, Bool
 
         return data;
     }
+
     @Override
     public List<DanhMuc> findDataByStatus(Boolean status) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -108,17 +109,31 @@ public class IDAO_DanhMuc implements IDAO_Manager<DanhMuc, Integer, String, Bool
 
     @Override
     public void insertData(DanhMuc dm) {
-        Connection_DB.executeUpdate("{Call add_DanhMuc(?,?,?,?)}", dm.getTenDanhMuc(),dm.getGiaPhong(),dm.getGhiChu(),dm.getTrangThai());
+        Connection_DB.executeUpdate("{Call add_DanhMuc(?,?,?,?)}", dm.getTenDanhMuc(), dm.getGiaPhong(), dm.getGhiChu(), dm.getTrangThai());
     }
 
     @Override
     public void updateData(DanhMuc dm) {
-         Connection_DB.executeUpdate("{Call update_DanhMuc(?,?,?,?,?)}", dm.getMaDanhMuc(),dm.getTenDanhMuc(),dm.getGiaPhong(),dm.getGhiChu(),dm.getTrangThai());
+        Connection_DB.executeUpdate("{Call update_DanhMuc(?,?,?,?,?)}", dm.getMaDanhMuc(), dm.getTenDanhMuc(), dm.getGiaPhong(), dm.getGhiChu(), dm.getTrangThai());
     }
 
     @Override
     public void deleteData(Integer id) {
         Connection_DB.executeUpdate("{Call delete_DanhMuc(?)}", id);
     }
-    
+
+    public int getMaDanhMuc(String tenDanhMuc) {
+        ResultSet resultSet = Connection_DB.executeQuery("{CALL find_MaDanhMucByTen(?)}", tenDanhMuc);
+        int maDanhMuc = 0;
+        try {
+            while (resultSet.next()) {
+                DanhMuc danhMuc = new DanhMuc();
+                maDanhMuc = resultSet.getInt("maDanhMuc");
+            }
+            return maDanhMuc;
+        } catch (SQLException e) {
+        }
+        return maDanhMuc;
+    }
+
 }

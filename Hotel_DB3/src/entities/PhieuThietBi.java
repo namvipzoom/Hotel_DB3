@@ -10,6 +10,8 @@ package entities;
  * @author DUY
  */
 public class PhieuThietBi {
+
+    private int maHoaDon;
     private int maDanhMuc;
     private int phong;
     private int maThietBi;
@@ -19,7 +21,8 @@ public class PhieuThietBi {
     private String tenDanhMuc;
     private String tenThietBi;
 
-    public PhieuThietBi(int maDanhMuc, int phong, int maThietBi, int soLuong, String ghiChu, boolean trangThai, String tenDanhMuc, String tenThietBi) {
+    public PhieuThietBi(int maHoaDon, int maDanhMuc, int phong, int maThietBi, int soLuong, String ghiChu, boolean trangThai, String tenDanhMuc, String tenThietBi) {
+        this.maHoaDon = maHoaDon;
         this.maDanhMuc = maDanhMuc;
         this.phong = phong;
         this.maThietBi = maThietBi;
@@ -35,6 +38,14 @@ public class PhieuThietBi {
 
     public int getMaDanhMuc() {
         return maDanhMuc;
+    }
+
+    public int getMaHoaDon() {
+        return maHoaDon;
+    }
+
+    public void setMaHoaDon(int maHoaDon) {
+        this.maHoaDon = maHoaDon;
     }
 
     public void setMaDanhMuc(int maDanhMuc) {

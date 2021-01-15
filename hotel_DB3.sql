@@ -6,15 +6,6 @@ go
 
 -- TẠO CÁC BẢNG
 
--- Bảng users
-Create table Users
-(
-	maNguoiDung varchar(5) primary key,
-	tenNguoiDung nvarchar(50) not null,
-	matKhau nvarchar(50) not null,
-	trangThai bit default(0) not null
-)
-go
 
 
 -- Bảng danh mục, danh mục các loại phòng
@@ -117,6 +108,7 @@ go
 -- Bảng phiếu thiết bị, Thông tin thiết bị của phòng
 create table PhieuThietBi
 (
+maHoaDon int foreign key references HoaDon(maHoaDon),--Mã hóa đơn
 maDanhMuc int Foreign key references DanhMuc(maDanhMuc),--Mã phòng
 maPhong int, -- Mã phòng
 maThietBi int Foreign key references ThietBi(maThietBi),--Mã thiết bị
@@ -129,8 +121,8 @@ go
 -- Bảng phiếu dịch vụ, thông tin chi tiết về các dịch vụ khách đặt
 Create table PhieuDichVu
 (
+	maHoaDon int foreign key references HoaDon(maHoaDon), -- Mã hóa đơn
 	maDichVu int Foreign key references DichVu(maDichVu), --Mã dịch vụ của phòng
-	maPhong int Foreign key references Phong (maPhong), --Mã phòng mà khách hàng thuê
 	ghiChu nvarchar (255), --Ghi chú về phiếu đặt
 	trangThai Bit Default(0) not null --Trạng thái của khuyến mại, 0- đã thanh toán, 1- đang chờ
 )
@@ -185,12 +177,22 @@ BEGIN
 	select * from DanhMuc where maDanhMuc = @maDanhMuc
 END
 go
+
 Create proc getAll_DanhMucHoatDong
 as
 BEGIN
 	select * from DanhMuc where trangThai = 1
 END
 go
+
+create proc find_MaDanhMucByTen
+	@tenDanhMuc nvarchar(50)
+as
+begin
+	select * from DanhMuc where tenDanhMuc = @tenDanhMuc
+end
+go
+
 
 -- Thủ tục của bảng Nhân Viên
 Create proc add_NhanVien
@@ -600,12 +602,13 @@ create proc insert_HoaDon
 	@maKhuyenMai int, --Mã khuyến mại tặng kèm khách hàng
 	@tongTien float, --Tổng tiền thanh toán của khách hàng là tổng tiền của các phiếu đặt phòng
 	@ghiChu nvarchar(255), --Ghi chú về phòng
-	@trangThai Bit 
+	@trangThai Bit,
+	@soLuot int
 as
 begin
 	insert into HoaDon values (@maNhanVien, @maKhachHang, @maPhong, @ngayDen, @ngayDi, @datCoc, @maKhuyenMai, @tongTien, @ghiChu, @trangThai);
 	update Phong set Phong.trangThai = 0 where maPhong = @maPhong;
-	update KhachHang set soLuot = soLuot + 1 where maKhachHang = @maKhachHang
+	update KhachHang set soLuot = soLuot + @soLuot where maKhachHang = @maKhachHang
 end
 go
 
@@ -638,7 +641,7 @@ begin
 end
 go
 
-Create proc getAll_HoaDon
+create proc getAll_HoaDon
 as
 BEGIN
 	select hd.*,nv.tenNhanVien,p.tenPhong from HoaDon hd 
@@ -686,6 +689,7 @@ go
 
 --THỦ TỤC BẢNG PHIẾU THIẾT BỊ
 Create proc add_PhieuThietBi
+	@maHoaDon int, --Mã hóa đơn
 	@maDanhMuc int,--Mã phòng
 	@maPhong int, -- Mã phòng
 	@maThietBi int ,--Mã thiết bị
@@ -694,15 +698,11 @@ Create proc add_PhieuThietBi
 	@trangThai Bit--Trạng thái của thiết bị
 as
 BEGIN
-	-- if((select soLuong from ThietBi)>=@soLuong and (select maThietBi from PhieuThietBi)!=@maThietBi)
 	
-		insert into PhieuThietBi values (@maDanhMuc, @maPhong, @maThietBi,@soLuong,@ghiChu,@trangThai);
+		insert into PhieuThietBi values (@maHoaDon, @maDanhMuc, @maPhong, @maThietBi,@soLuong,@ghiChu,@trangThai);
 		update ThietBi set soLuong = soLuong-@soLuong  where maThietBi = @maThietBi
-	
-	
 END
 go
-
 
 
 create proc get_AllPhieuThietBi
@@ -711,6 +711,7 @@ begin
 	select ptb.*, dm.tenDanhMuc as N'tenDanhMuc', tb.tenThietBi as N'tenThietBi' from PhieuThietBi ptb join ThietBi tb on tb.maThietBi = ptb.maThietBi join DanhMuc dm on dm.maDanhMuc = ptb.maDanhMuc
 end
 go
+
 
 
 create proc delete_PhieuThietBi
@@ -732,22 +733,24 @@ go
 
 create proc find_PhieuThietBiByTenVaPhong
 	@maThietBi int, -- Mã thiết bị
-	@phong int -- Số phòng
+	@danhMuc int -- Số phòng
 as
 BEGIN
-	select ptb.*, dm.tenDanhMuc as N'tenDanhMuc', tb.tenThietBi as N'tenThietBi' from PhieuThietBi ptb join ThietBi tb on tb.maThietBi = ptb.maThietBi join DanhMuc dm on dm.maDanhMuc = ptb.maDanhMuc where ptb.maThietBi = @maThietBi and ptb.maPhong = @phong
+	select ptb.*, dm.tenDanhMuc as N'tenDanhMuc', tb.tenThietBi as N'tenThietBi' from PhieuThietBi ptb join ThietBi tb on tb.maThietBi = ptb.maThietBi join DanhMuc dm on dm.maDanhMuc = ptb.maDanhMuc where (ptb.maThietBi = @maThietBi and ptb.maDanhMuc = @danhMuc) or (ptb.maThietBi = @maThietBi and ptb.maHoaDon = @danhMuc)
 ENd
 go
- 
+
+
+
  -- Thủ tục bảng phiếu dịch vụ
 Create proc add_PhieuDichVu
+@maHoaDon int,-- Mã hóa đơn
 @maDichVu int , --Mã dịch vụ của phòng
-@maPhong int , --Mã phòng mà khách hàng thuê
 @ghiChu nvarchar (255), --Ghi chú về phiếu đặt
 @trangThai Bit --Trạng thái của khuyến mại, 0- đã thanh toán, 1- đang chờ
 as
 BEGIN
-	insert into PhieuDichVu values(@maDichVu,@maPhong,@ghiChu,@trangThai)
+	insert into PhieuDichVu values(@maHoaDon, @maDichVu,@ghiChu,@trangThai)
 END
 go
 
@@ -795,6 +798,8 @@ END
 go
 
   --Thêm Danh Mục Phòng
+exec add_DanhMuc 'Free',0,'',1
+go
 exec add_DanhMuc 'Standar Single Bed Room',1000000,'',1
 go
 exec add_DanhMuc 'Standar Twin Bed Room',1500000,'',1	
@@ -834,6 +839,8 @@ go
 exec add_DanhMuc 'Connecting Tripple Bed Room',4000000,'',1
 go
 
+exec add_Phong '0',1,1,'',1
+go
 exec add_Phong '101',1,1,'',1
 go
 exec add_Phong '102',1,1,'',1
@@ -891,6 +898,15 @@ exec add_DichVu'Dịch vụ phòng 24/24',0,1
 go
 exec add_DichVu'Giặt ủi',0,1
 go
+
+exec add_KhachHang 'Vũ Quỳnh Anh','0787424822','061104109','',1,1
+go
+exec add_NhanVien 'NV001','admin',12345,1,'',1
+go
+exec add_KhuyenMai 'Null','Null',0,1
+go
+exec insert_HoaDon 'NV001',1,1,'_','_',12,1,0,'',1,0
+go 
 select * from HoaDon
 
 
