@@ -25,6 +25,7 @@ public class IDAO_PhieuThietBi implements IDAO_Manager<PhieuThietBi, Integer, In
         try {
             while (resultSet.next()) {
                 PhieuThietBi phieuThietBi = new PhieuThietBi();
+                phieuThietBi.setMaHoaDon(resultSet.getInt("maHoaDon"));
                 phieuThietBi.setMaDanhMuc(resultSet.getInt("maDanhMuc"));
                 phieuThietBi.setPhong(resultSet.getInt("maPhong"));
                 phieuThietBi.setMaThietBi(resultSet.getInt("maThietBi"));
@@ -58,7 +59,7 @@ public class IDAO_PhieuThietBi implements IDAO_Manager<PhieuThietBi, Integer, In
 
     @Override
     public void insertData(PhieuThietBi t) {
-        Connection_DB.executeUpdate("{CALL add_PhieuThietBi(?,?,?,?,?,?)}", t.getMaDanhMuc(), t.getPhong(), t.getMaThietBi(), t.getSoLuong(), t.getGhiChu(), t.isTrangThai());
+        Connection_DB.executeUpdate("{CALL add_PhieuThietBi(?,?,?,?,?,?,?)}",t.getMaHoaDon(), t.getMaDanhMuc(), t.getPhong(), t.getMaThietBi(), t.getSoLuong(), t.getGhiChu(), t.isTrangThai());
     }
 
     @Override
@@ -76,6 +77,7 @@ public class IDAO_PhieuThietBi implements IDAO_Manager<PhieuThietBi, Integer, In
         try {
             while (resultSet.next()) {
                 PhieuThietBi phieuThietBi = new PhieuThietBi();
+                phieuThietBi.setMaHoaDon(resultSet.getInt("maHoaDon"));
                 phieuThietBi.setMaDanhMuc(resultSet.getInt("maDanhMuc"));
                 phieuThietBi.setPhong(resultSet.getInt("maPhong"));
                 phieuThietBi.setMaThietBi(resultSet.getInt("maThietBi"));
@@ -98,6 +100,31 @@ public class IDAO_PhieuThietBi implements IDAO_Manager<PhieuThietBi, Integer, In
         try {
             while (resultSet.next()) {
                 PhieuThietBi phieuThietBi = new PhieuThietBi();
+                phieuThietBi.setMaHoaDon(resultSet.getInt("maHoaDon"));
+                phieuThietBi.setMaDanhMuc(resultSet.getInt("maDanhMuc"));
+                phieuThietBi.setPhong(resultSet.getInt("maPhong"));
+                phieuThietBi.setMaThietBi(resultSet.getInt("maThietBi"));
+                phieuThietBi.setSoLuong(resultSet.getInt("soLuong"));
+                phieuThietBi.setGhiChu(resultSet.getString("ghiChu"));
+                phieuThietBi.setTrangThai(resultSet.getBoolean("trangThai"));
+                phieuThietBi.setTenDanhMuc(resultSet.getString("tenDanhMuc"));
+                phieuThietBi.setTenThietBi(resultSet.getString("tenThietBi"));
+                listPhieuThietBi.add(phieuThietBi);
+            }
+            return listPhieuThietBi;
+        } catch (SQLException ex) {
+            Logger.getLogger(IDAO_PhieuThietBi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public List<PhieuThietBi> listPhieuThietBiById(int id) {
+        List<PhieuThietBi> listPhieuThietBi = new ArrayList<>();
+        ResultSet resultSet = Connect.Connection_DB.executeQuery("{CALL find_PhieuThietBiByTen(?)}", id);
+        try {
+            while (resultSet.next()) {
+                PhieuThietBi phieuThietBi = new PhieuThietBi();
+                phieuThietBi.setMaHoaDon(resultSet.getInt("maHoaDon"));
                 phieuThietBi.setMaDanhMuc(resultSet.getInt("maDanhMuc"));
                 phieuThietBi.setPhong(resultSet.getInt("maPhong"));
                 phieuThietBi.setMaThietBi(resultSet.getInt("maThietBi"));

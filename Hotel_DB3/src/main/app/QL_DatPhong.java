@@ -882,6 +882,11 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
         btn_DatPhong.setForeground(new java.awt.Color(0, 0, 153));
         btn_DatPhong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/add_25px.png"))); // NOI18N
         btn_DatPhong.setText("ĐẶT PHÒNG");
+        btn_DatPhong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_DatPhongActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -1010,7 +1015,7 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
                     .addComponent(check_ChuaThanhToan)
                     .addComponent(check_ThanhToan)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_ThemThietBi, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_ThemDichVu, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1021,7 +1026,7 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
                     .addComponent(txt_TongTien1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_DatPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_ThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_HuyPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1147,7 +1152,6 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
             int id = (int) tbl_Phong.getValueAt(selectedPhong, 0);
             Phong p = iDAO_Phong.findDataById(id);
             txt_MaPhong.setText(p.getMaPhong() + "");
-//            btn_ThemThietBi.setEnabled(true);
         }
     }
 
@@ -1243,13 +1247,16 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
         txt_MaPhong.setText("");
         check_ChuaThanhToan.setSelected(true);
         check_ThanhToan.setSelected(false);
+        Date today = new Date();
+        date_NgayDen.setDate(today);
+        date_NgayDi.setDate(today);
     }
     private void check_ThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_ThanhToanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_check_ThanhToanActionPerformed
 
     private void btn_ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ClearActionPerformed
-        // TODO add your handling code here:
+       Clear();
     }//GEN-LAST:event_btn_ClearActionPerformed
 
     private void txt_MaKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_MaKhachHangMouseClicked
@@ -1399,6 +1406,67 @@ public final class QL_DatPhong extends javax.swing.JInternalFrame {
     private void txt_MaPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_MaPhongActionPerformed
 
     }//GEN-LAST:event_txt_MaPhongActionPerformed
+
+    private void btn_DatPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DatPhongActionPerformed
+        HoaDon hoaDon = new HoaDon();
+        //Ngày tháng
+        int soNgay = 0;
+        String ngayDen = null;
+        String ngayDi = null;
+        String tb = "";
+        if (txt_MaKhachHang.getText().length() == 0) {
+            tb += "Mã khách hàng không được để trống! \n";
+        }
+        if (txt_MaPhong.getText().length() == 0) {
+            tb += "Mã phòng không được để trống! \n";
+        }
+        if (date_NgayDen.getDate() == null) {
+            tb += "Ngày đến không được để trống! \n";
+        }
+        if (date_NgayDi.getDate() == null) {
+            tb += "Ngày đi không được để trống! \n";
+        }
+        if (!check.isNumeric(txt_DatCoc.getText())) {
+            tb += "Tiền đặt cọc phải là số!";
+        }
+        if (txt_MaKhachHang.getText().length() > 0 && txt_MaPhong.getText().length() > 0 && date_NgayDen.getDate() != null && date_NgayDi.getDate() != null && check.isNumeric(txt_DatCoc.getText())) {
+            try {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                ngayDen = dateFormat.format(date_NgayDen.getDate());
+                ngayDi = dateFormat.format(date_NgayDi.getDate());
+                Date dateNgayDi = dateFormat.parse(ngayDi);
+                Date dateNgayDen = dateFormat.parse(ngayDen);
+                long numberDate = dateNgayDi.getTime() - dateNgayDen.getTime();
+                soNgay = (int) ((numberDate / (1000 * 60 * 60 * 24)) + 1);
+            } catch (ParseException ex) {
+                Logger.getLogger(QL_DatPhong.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            hoaDon.setMaKhachHang(Integer.parseInt(txt_MaKhachHang.getText()));
+            hoaDon.setDatCoc(Float.parseFloat(txt_DatCoc.getText()));
+            hoaDon.setGhiChu(txt_GhiChu.getText());
+            hoaDon.setTrangThai(check_ThanhToan.isSelected());
+            hoaDon.setNgayDen(ngayDen);
+            hoaDon.setNgayDi(ngayDi);
+            NhanVien nhanVien = (NhanVien) list_MaNhanVien.getSelectedItem();
+            hoaDon.setMaNhanVien(nhanVien.getMaNhanVien());
+            KhuyenMai khuyenMai = (KhuyenMai) list_KhuyenMai.getSelectedItem();
+            hoaDon.setMaKhuyenMai(khuyenMai.getMaKhuyenMai());
+            hoaDon.setMaPhong(Integer.parseInt(txt_MaPhong.getText()));
+            hoaDon.setSoLuot(0);
+            // Tổng tiền
+            hoaDon.setTongTien(0);
+
+            iDAO_HoaDon.insertData(hoaDon);
+            btn_ThemThietBi.setEnabled(true);
+            btn_ThemDichVu.setEnabled(true);
+            ImageIcon icon = new ImageIcon("src/Image/checkmark_25px.png");
+            JOptionPane.showMessageDialog(this, "Bạn đặt hàng thành công!", "Thông báo...", JOptionPane.WARNING_MESSAGE, icon);
+        } else {
+            JOptionPane.showMessageDialog(this, tb, "Thông Báo", JOptionPane.WARNING_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btn_DatPhongActionPerformed
 
     private void locPhong() {
         DefaultComboBoxModel boxModel = (DefaultComboBoxModel) list_Status.getModel();
